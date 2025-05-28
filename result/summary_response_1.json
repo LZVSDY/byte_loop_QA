@@ -1,0 +1,152 @@
+[
+    {
+        "keywords": "1990s",
+        "relation_to_answer": "1999 is the 10th and last year of the 1990s decade",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "1990",
+        "relation_to_answer": "The 1990s began on 1 January 1990",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "1999",
+        "relation_to_answer": "1999 is the 10th and last year of the 1990s decade",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "Gregorian calendar",
+        "relation_to_answer": "1999 was a common year starting on Friday of the Gregorian calendar",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Common Era (CE)",
+        "relation_to_answer": "1999 was the 1999th year of the Common Era (CE)",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Anno Domini (AD)",
+        "relation_to_answer": "1999 was the 1999th year of Anno Domini (AD)",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "2nd millennium",
+        "relation_to_answer": "1999 was the 999th year of the 2nd millennium",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "20th century",
+        "relation_to_answer": "1999 was the 99th year of the 20th century",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "Guido van Rossum",
+        "relation_to_answer": "Guido van Rossum was born in 1956",
+        "iteration": "2",
+        "type": "people"
+    },
+    {
+        "keywords": "The Netherlands",
+        "relation_to_answer": "Guido van Rossum is a Dutch programmer",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "Holland",
+        "relation_to_answer": "Holland is informally the Netherlands where Guido van Rossum is from",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "Northwestern Europe",
+        "relation_to_answer": "The Netherlands is a country in Northwestern Europe",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "Caribbean",
+        "relation_to_answer": "The Netherlands has overseas territories in the Caribbean",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "British Broadcasting Corporation (BBC)",
+        "relation_to_answer": "BBC is a British public service broadcaster",
+        "iteration": "2",
+        "type": "organization"
+    },
+    {
+        "keywords": "Broadcasting House",
+        "relation_to_answer": "BBC is headquartered at Broadcasting House",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "London",
+        "relation_to_answer": "BBC is headquartered in London",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "England",
+        "relation_to_answer": "BBC is headquartered in London, England",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "computing",
+        "relation_to_answer": "In computing, exception handling occurs during program execution",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "computer programming",
+        "relation_to_answer": "In computer programming, exception handling occurs during program execution",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "exception handling",
+        "relation_to_answer": "Exception handling is the process of responding to exceptions during program execution",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Amoeba",
+        "relation_to_answer": "Amoeba is a distributed operating system",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Andrew S. Tanenbaum",
+        "relation_to_answer": "Andrew S. Tanenbaum developed Amoeba",
+        "iteration": "2",
+        "type": "people"
+    },
+    {
+        "keywords": "Vrije Universiteit Amsterdam",
+        "relation_to_answer": "Amoeba was developed at Vrije Universiteit Amsterdam by Andrew S. Tanenbaum and others",
+        "iteration": "2",
+        "type": "organization"
+    },
+    {
+        "keywords": "Python programming language",
+        "relation_to_answer": "The syntax of Python programming language defines how a Python program is written and interpreted",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "syntax",
+        "relation_to_answer": "The syntax of Python programming language defines how a Python program is written and interpreted",
+        "iteration": "2",
+        "type": "stuff"
+    }
+]

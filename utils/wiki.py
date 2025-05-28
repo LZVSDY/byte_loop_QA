@@ -1,7 +1,7 @@
 import wikipedia
 
 
-def search_wikipedia(query: str, num_results: int = 5, language = "en") -> list:
+def search_wikipedia(query: str, num_results: int = 5, language: str = "en", loop_id: int = 0) -> list:
     """
     Search Wikipedia for a given query and return a list of summaries.
 
@@ -22,6 +22,11 @@ def search_wikipedia(query: str, num_results: int = 5, language = "en") -> list:
             summary = wikipedia.summary(title, sentences=1)
             # print(f"Summary for '{title}': {summary}")
             summaries.append(summary)
+        
+        # save summaries to a file
+        with open(f"/data1/lz/loop_QA/result/wikipedia_summaries_{loop_id}.txt", "w") as f:
+            for summary in summaries:
+                f.write(summary + "\n")
         return summaries
     except Exception as e:
         print(f"Error searching Wikipedia: {e}")

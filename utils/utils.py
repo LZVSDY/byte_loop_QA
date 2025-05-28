@@ -1,9 +1,9 @@
 import os
 import json
 
-SYSTEM_PROMPT_PARH = "/data1/lz/langchain/system_prompt"
-USR_PROMPT_PARH = "/data1/lz/langchain/user_prompt_fomat"
-THRESHOLD = 0.7
+SYSTEM_PROMPT_PARH = "/data1/lz/loop_QA/system_prompt"
+USR_PROMPT_PARH = "/data1/lz/loop_QA/user_prompt_fomat"
+THRESHOLD = 0.8
 
 def get_system_prompt(file_name: str = "system_prompt", defult_path: str = SYSTEM_PROMPT_PARH) -> str:
     file_path = os.path.join(defult_path, f"{file_name}.txt")
@@ -53,7 +53,7 @@ def query_prompt(file_name: str, prompt1: any = "", prompt2: any = None) -> str:
     
     return usr_prompt
 
-def get_key_from_file(file_path: str = "/data1/lz/langchain/key.txt") -> str:
+def get_key_from_file(file_path: str = "/data1/lz/loop_QA/key.txt") -> str:
     """
     Read a key from a file.
     
@@ -148,3 +148,125 @@ def save_string_as_json(json_string: str, output_file_path: str):
         # 捕获其他可能的错误，例如没有文件写入权限等
         print(f"❌ 发生未知错误: {e}")
         return False
+    
+def load_question_indices(file_path: str) -> dict[int, list[int]]:
+    """
+    读取一个指定格式的文本文件，该文件定义了要从哪些结果文件中抽取哪些问题。
+
+    Args:
+        file_path (str): 索引文件的路径, 例如 'questions_to_answer.txt'。
+
+    Returns:
+        dict[int, list[int]]: 一个字典，键是文件ID (loop_id)，值是要回答的问题索引列表。
+                                例如: {0: [0, 1], 1: [0, 2]}
+    """
+    question_map = {}
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                parts = line.strip().split()
+                if len(parts) == 2:
+                    try:
+                        file_id = int(parts[0])
+                        question_id = int(parts[1])
+                        if file_id not in question_map:
+                            question_map[file_id] = []
+                        question_map[file_id].append(question_id)
+                    except ValueError:
+                        print(f"⚠️ 警告: 无法解析行 '{line.strip()}'，已跳过。")
+    except FileNotFoundError:
+        print(f"❌ 错误: 问题索引文件未找到: {file_path}")
+    return question_map
+
+def prepare_student_task(question_map: dict[int, list[int]], result_dir: str) -> str | None:
+    """
+    根据问题映射，从指定的JSON结果文件中抽取问题，并格式化为单个字符串。
+
+    Args:
+        question_map (dict[int, list[int]]): `load_question_indices` 函数返回的字典。
+        result_dir (str): 存储 relation_response_X.json 文件的目录路径。
+
+    Returns:
+        str | None: 一个包含所有待回答问题的、格式化好的字符串。如果出错则返回 None。
+    """
+    all_questions = []
+    question_number = 1
+    
+    # 按文件ID排序，确保问题顺序稳定
+    for file_id in sorted(question_map.keys()):
+        file_path = os.path.join(result_dir, f"relation_response_{file_id}.json")
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            # 确保 'related_concepts' 存在且为列表
+            related_concepts = data.get("related_concepts", [])
+            if not isinstance(related_concepts, list):
+                continue
+
+            # 抽取指定索引的问题
+            for question_id in question_map[file_id]:
+                if 0 <= question_id < len(related_concepts):
+                    question_text = related_concepts[question_id].get("question")
+                    if question_text:
+                        all_questions.append(f"{question_number}. {question_text}")
+                        question_number += 1
+                else:
+                    print(f"⚠️ 警告: 在文件 {file_path} 中找不到索引为 {question_id} 的问题。")
+
+        except (FileNotFoundError, json.JSONDecodeError, KeyError) as e:
+            print(f"❌ 错误: 处理文件 {file_path} 时出错: {e}")
+            continue
+            
+    if not all_questions:
+        return None
+        
+    return "\n".join(all_questions)
+
+def get_keywords_from_summary(file_path: str) -> list[str]:
+    """
+    从一个新版格式的 summary_response.json 文件中读取并提取所有专有名词/关键词。
+
+    新版JSON格式是一个对象列表，例如:
+    [
+        {"proper_noun": "专有名词1", ...},
+        {"keywords": "关键词2", ...}
+    ]
+
+    Args:
+        file_path (str): summary_response_{i}.json 文件的路径。
+
+    Returns:
+        list[str]: 一个包含所有专有名词/关键词字符串的列表。
+                   如果文件不存在或格式不正确，则返回空列表。
+    """
+    keywords = []
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            # 直接将整个文件内容解析为列表
+            data_list = json.load(f)
+        
+        # 1. 确保加载的数据是一个列表
+        if not isinstance(data_list, list):
+            print(f"⚠️ 警告: 文件 {file_path} 的内容不是一个列表，无法提取关键词。")
+            return []
+
+        # 2. 遍历列表中的每一个字典元素
+        for item in data_list:
+            # 3. 确保每个元素都是字典
+            if isinstance(item, dict):
+                # 4. 尝试从 'proper_noun' 或 'keywords' 键中获取值
+                #    使用 .get(key) 方法比直接用 [key] 更安全，如果键不存在不会报错
+                keyword = item.get("proper_noun") or item.get("keywords")
+                
+                if keyword:
+                    keywords.append(keyword)
+
+    except FileNotFoundError:
+        print(f"❌ 错误: 文件未找到: {file_path}")
+    except json.JSONDecodeError:
+        print(f"❌ 错误: 文件 {file_path} 的内容不是有效的JSON格式。")
+    except Exception as e:
+        print(f"❌ 处理文件 {file_path} 时发生未知错误: {e}")
+    
+    return keywords
