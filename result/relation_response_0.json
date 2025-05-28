@@ -1,0 +1,31 @@
+{
+    "core_concept": "Python program",
+    "category": "通用",
+    "features": {
+        "time": "",
+        "space": "",
+        "quantity": ""
+    },
+    "related_concepts": [
+        {
+            "concept": "Python",
+            "relationship": "它是一种常用于编写各类程序的编程语言",
+            "question": "以哪种编程语言编写的、用于执行特定任务的代码集合是什么？"
+        },
+        {
+            "concept": "high-level",
+            "relationship": "这种高级特性常被用于编写能执行特定任务的代码集合",
+            "question": "具有 high - level 特性，用于实现特定功能的代码统称为什么？"
+        },
+        {
+            "concept": "general-purpose",
+            "relationship": "具有通用目的，能通过编写代码实现各种任务的统称是什么",
+            "question": "以通用目的为导向，通过编写代码来实现各种功能的称作什么？"
+        },
+        {
+            "concept": "programming language",
+            "relationship": "使用这种编程语言编写的，用于完成特定功能的代码集合是什么",
+            "question": "使用 programming language 编写的、能够完成特定功能的代码组合叫什么？"
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "main_topic": "关于Python编程语言的介绍，包括其特性、语法及起源",
+    "keywords": [
+        {
+            "term": "Python",
+            "category": "概念",
+            "relevance": 1.0
+        },
+        {
+            "term": "编程语言",
+            "category": "概念",
+            "relevance": 0.8
+        },
+        {
+            "term": "语法",
+            "category": "概念",
+            "relevance": 0.8
+        },
+        {
+            "term": "Guido van Rossum",
+            "category": "人物",
+            "relevance": 0.7
+        },
+        {
+            "term": "ABC",
+            "category": "概念",
+            "relevance": 0.7
+        },
+        {
+            "term": "异常处理",
+            "category": "技术",
+            "relevance": 0.7
+        },
+        {
+            "term": "Amoeba操作系统",
+            "category": "概念",
+            "relevance": 0.7
+        },
+        {
+            "term": "高级",
+            "category": "概念",
+            "relevance": 0.7
+        },
+        {
+            "term": "通用",
+            "category": "概念",
+            "relevance": 0.7
+        },
+        {
+            "term": "运行时系统",
+            "category": "概念",
+            "relevance": 0.7
+        }
+    ]
+}

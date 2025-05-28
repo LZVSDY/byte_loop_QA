@@ -1,0 +1,25 @@
+{
+    "main_topic": "对Python这一编程语言的介绍",
+    "keywords": [
+        {
+            "term": "Python",
+            "category": "概念",
+            "relevance": 1.0
+        },
+        {
+            "term": "high-level",
+            "category": "概念",
+            "relevance": 0.8
+        },
+        {
+            "term": "general-purpose",
+            "category": "概念",
+            "relevance": 0.8
+        },
+        {
+            "term": "programming language",
+            "category": "概念",
+            "relevance": 0.9
+        }
+    ]
+}
