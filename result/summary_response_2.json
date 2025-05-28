@@ -1,446 +1,134 @@
 [
     {
-        "keywords": "1990",
+        "keywords": "1990s",
         "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "time"
     },
     {
-        "keywords": "MCMXC",
+        "keywords": "1 January 1990",
         "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "time"
     },
     {
-        "keywords": "Gregorian calendar",
+        "keywords": "31 December 1999",
         "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "Common Era",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "time"
-    },
-    {
-        "keywords": "CE",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "time"
-    },
-    {
-        "keywords": "Anno Domini",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "time"
-    },
-    {
-        "keywords": "AD",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "time"
-    },
-    {
-        "keywords": "2nd millennium",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "time"
-    },
-    {
-        "keywords": "20th century",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "time"
-    },
-    {
-        "keywords": "1990s decade",
-        "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "time"
     },
     {
         "keywords": "1999",
         "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "time"
     },
     {
-        "keywords": "MCMXCIX",
+        "keywords": "Friday",
         "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "time"
     },
     {
-        "keywords": "before Christ",
+        "keywords": "Common Era (CE)",
         "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "time"
     },
     {
-        "keywords": "BC",
+        "keywords": "Anno Domini (AD)",
         "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "time"
     },
     {
-        "keywords": "Julian calendars",
+        "keywords": "2nd millennium",
         "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "1 January 1901",
-        "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "time"
     },
     {
-        "keywords": "MCMI",
+        "keywords": "20th century",
         "relation_to_answer": "",
-        "iteration": "3",
-        "type": "time"
-    },
-    {
-        "keywords": "31 December 2000",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "time"
-    },
-    {
-        "keywords": "MM",
-        "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "time"
     },
     {
         "keywords": "Guido van Rossum",
         "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "people"
     },
     {
-        "keywords": "Dutch",
+        "keywords": "31 January 1956",
         "relation_to_answer": "",
-        "iteration": "3",
-        "type": "organization"
-    },
-    {
-        "keywords": "1956",
-        "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "time"
     },
     {
         "keywords": "The Netherlands",
         "relation_to_answer": "",
-        "iteration": "3",
-        "type": "organization"
+        "iteration": "2",
+        "type": "space"
     },
     {
         "keywords": "Holland",
         "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "space"
     },
     {
         "keywords": "Northwestern Europe",
         "relation_to_answer": "",
-        "iteration": "3",
-        "type": "space"
-    },
-    {
-        "keywords": "Europe",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "space"
-    },
-    {
-        "keywords": "Northern Europe",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "space"
-    },
-    {
-        "keywords": "Western Europe",
-        "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "space"
     },
     {
         "keywords": "Caribbean",
         "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "space"
     },
     {
-        "keywords": "Caribbean Sea",
+        "keywords": "The British Broadcasting Corporation (BBC)",
         "relation_to_answer": "",
-        "iteration": "3",
-        "type": "space"
-    },
-    {
-        "keywords": "North Atlantic Ocean",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "space"
-    },
-    {
-        "keywords": "West Indies",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "space"
-    },
-    {
-        "keywords": "London Broadcasting House",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "BBC",
-        "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "organization"
     },
     {
-        "keywords": "Portland Place",
+        "keywords": "Broadcasting House",
         "relation_to_answer": "",
-        "iteration": "3",
-        "type": "space"
-    },
-    {
-        "keywords": "Langham Place",
-        "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "space"
     },
     {
         "keywords": "London",
         "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "space"
     },
     {
         "keywords": "England",
         "relation_to_answer": "",
-        "iteration": "3",
-        "type": "organization"
+        "iteration": "2",
+        "type": "space"
     },
     {
-        "keywords": "United Kingdom",
+        "keywords": "Amoeba",
         "relation_to_answer": "",
-        "iteration": "3",
-        "type": "organization"
-    },
-    {
-        "keywords": "8,866,180",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "num"
-    },
-    {
-        "keywords": "2022",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "time"
-    },
-    {
-        "keywords": "Competition",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "event"
-    },
-    {
-        "keywords": "Computer programming",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "work"
-    },
-    {
-        "keywords": "coding",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "work"
-    },
-    {
-        "keywords": "programs",
-        "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "stuff"
     },
     {
-        "keywords": "computing",
+        "keywords": "Andrew S. Tanenbaum",
         "relation_to_answer": "",
-        "iteration": "3",
-        "type": "work"
-    },
-    {
-        "keywords": "exception handling",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "work"
-    },
-    {
-        "keywords": "exceptions",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "amoeba",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "ameba",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "amœba",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "amoebas",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "amebas",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "amoebae",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "amebae",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "amoeboid",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "pseudopods",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "Andrew Stuart Tanenbaum",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "people"
-    },
-    {
-        "keywords": "AST",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "people"
-    },
-    {
-        "keywords": "American",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "organization"
-    },
-    {
-        "keywords": "Dutch",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "organization"
-    },
-    {
-        "keywords": "computer scientist",
-        "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "people"
     },
     {
         "keywords": "Vrije Universiteit Amsterdam",
         "relation_to_answer": "",
-        "iteration": "3",
+        "iteration": "2",
         "type": "organization"
-    },
-    {
-        "keywords": "VU Amsterdam",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "organization"
-    },
-    {
-        "keywords": "VU",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "organization"
-    },
-    {
-        "keywords": "Amsterdam",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "space"
-    },
-    {
-        "keywords": "1880",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "time"
-    },
-    {
-        "keywords": "Python",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "linguistics",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "work"
-    },
-    {
-        "keywords": "syntax",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "work"
-    },
-    {
-        "keywords": "words",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "morphemes",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "phrases",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
-    },
-    {
-        "keywords": "sentences",
-        "relation_to_answer": "",
-        "iteration": "3",
-        "type": "stuff"
     }
 ]

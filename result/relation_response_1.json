@@ -1,202 +1,58 @@
 [
     {
         "answer": "Python program",
-        "keywords": "1990s",
-        "relation_to_answer": "1999 is the 10th and last year of the 1990s decade",
-        "iteration": "2",
+        "keywords": "1980s",
+        "relation_to_answer": "Python was conceived in the late 1980s",
+        "iteration": "1",
         "type": "time",
-        "question": "Based on the fact that 1999 is the 10th and last year of the 1990s decade, what is related to this time period in the context of programming concepts?"
+        "question": "What was conceived in the late 1980s?"
     },
     {
         "answer": "Python program",
-        "keywords": "1990",
-        "relation_to_answer": "The 1990s began on 1 January 1990",
-        "iteration": "2",
+        "keywords": "December 1989",
+        "relation_to_answer": "The implementation of Python was started in December 1989",
+        "iteration": "1",
         "type": "time",
-        "question": "Given that the 1990s started on 1 January 1990, what in the programming field is associated with this starting year of the decade?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "1999",
-        "relation_to_answer": "1999 is the 10th and last year of the 1990s decade",
-        "iteration": "2",
-        "type": "time",
-        "question": "Since 1999 is the 10th and last year of the 1990s decade, what in the realm of programming can be linked to this particular year?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "Gregorian calendar",
-        "relation_to_answer": "1999 was a common year starting on Friday of the Gregorian calendar",
-        "iteration": "2",
-        "type": "stuff",
-        "question": "Considering 1999 was a common year starting on Friday of the Gregorian calendar, what in the programming aspect is related to this calendrical information?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "Common Era (CE)",
-        "relation_to_answer": "1999 was the 1999th year of the Common Era (CE)",
-        "iteration": "2",
-        "type": "stuff",
-        "question": "Given that 1999 was the 1999th year of the Common Era (CE), what programming - related item is associated with this time notation?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "Anno Domini (AD)",
-        "relation_to_answer": "1999 was the 1999th year of Anno Domini (AD)",
-        "iteration": "2",
-        "type": "stuff",
-        "question": "Since 1999 was the 1999th year of Anno Domini (AD), what in programming can be connected to this dating system?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "2nd millennium",
-        "relation_to_answer": "1999 was the 999th year of the 2nd millennium",
-        "iteration": "2",
-        "type": "time",
-        "question": "Based on 1999 being the 999th year of the 2nd millennium, what in programming is related to this long - term time frame?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "20th century",
-        "relation_to_answer": "1999 was the 99th year of the 20th century",
-        "iteration": "2",
-        "type": "time",
-        "question": "Given that 1999 was the 99th year of the 20th century, what programming - relevant thing is associated with this century?"
+        "question": "What implementation was started in December 1989?"
     },
     {
         "answer": "Python program",
         "keywords": "Guido van Rossum",
-        "relation_to_answer": "Guido van Rossum was born in 1956",
-        "iteration": "2",
+        "relation_to_answer": "Guido van Rossum started the implementation of Python in December 1989",
+        "iteration": "1",
         "type": "people",
-        "question": "Considering Guido van Rossum was born in 1956, what programming - related creation is associated with him?"
+        "question": "What did Guido van Rossum start the implementation of in December 1989?"
     },
     {
         "answer": "Python program",
-        "keywords": "The Netherlands",
-        "relation_to_answer": "Guido van Rossum is a Dutch programmer",
-        "iteration": "2",
-        "type": "space",
-        "question": "Given that Guido van Rossum is a Dutch programmer from the Netherlands, what programming work is related to his country of origin?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "Holland",
-        "relation_to_answer": "Holland is informally the Netherlands where Guido van Rossum is from",
-        "iteration": "2",
-        "type": "space",
-        "question": "Since Holland, informally the Netherlands, is where Guido van Rossum is from, what programming output is related to this region?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "Northwestern Europe",
-        "relation_to_answer": "The Netherlands is a country in Northwestern Europe",
-        "iteration": "2",
-        "type": "space",
-        "question": "Based on the Netherlands being a country in Northwestern Europe, what programming item is related to this geographical area?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "Caribbean",
-        "relation_to_answer": "The Netherlands has overseas territories in the Caribbean",
-        "iteration": "2",
-        "type": "space",
-        "question": "Given that the Netherlands has overseas territories in the Caribbean, what programming - related thing is associated with this connection?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "British Broadcasting Corporation (BBC)",
-        "relation_to_answer": "BBC is a British public service broadcaster",
-        "iteration": "2",
+        "keywords": "CWI",
+        "relation_to_answer": "Guido van Rossum started the implementation of Python at CWI in the Netherlands",
+        "iteration": "1",
         "type": "organization",
-        "question": "Considering BBC is a British public service broadcaster, what programming - related aspect can be associated with this organization?"
+        "question": "What implementation did Guido van Rossum start at CWI in the Netherlands?"
     },
     {
         "answer": "Python program",
-        "keywords": "Broadcasting House",
-        "relation_to_answer": "BBC is headquartered at Broadcasting House",
-        "iteration": "2",
+        "keywords": "Netherlands",
+        "relation_to_answer": "Guido van Rossum started the implementation of Python at CWI in the Netherlands",
+        "iteration": "1",
         "type": "space",
-        "question": "Given that BBC is headquartered at Broadcasting House, what programming - related work is associated with this location?"
+        "question": "What implementation did Guido van Rossum start at CWI in the Netherlands?"
     },
     {
         "answer": "Python program",
-        "keywords": "London",
-        "relation_to_answer": "BBC is headquartered in London",
-        "iteration": "2",
-        "type": "space",
-        "question": "Since BBC is headquartered in London, what programming - related thing can be linked to this city?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "England",
-        "relation_to_answer": "BBC is headquartered in London, England",
-        "iteration": "2",
-        "type": "space",
-        "question": "Based on BBC being headquartered in London, England, what programming - relevant item is associated with this place?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "computing",
-        "relation_to_answer": "In computing, exception handling occurs during program execution",
-        "iteration": "2",
+        "keywords": "ABC",
+        "relation_to_answer": "Python was a successor to ABC",
+        "iteration": "1",
         "type": "stuff",
-        "question": "Given that in computing, exception handling occurs during program execution, what specific entity in programming is related to this computing concept?"
+        "question": "What was a successor to ABC?"
     },
     {
         "answer": "Python program",
-        "keywords": "computer programming",
-        "relation_to_answer": "In computer programming, exception handling occurs during program execution",
-        "iteration": "2",
+        "keywords": "Amoeba operating system",
+        "relation_to_answer": "Python was capable of interfacing with the Amoeba operating system",
+        "iteration": "1",
         "type": "stuff",
-        "question": "Since in computer programming, exception handling occurs during program execution, what particular programming piece is associated with this programming concept?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "exception handling",
-        "relation_to_answer": "Exception handling is the process of responding to exceptions during program execution",
-        "iteration": "2",
-        "type": "stuff",
-        "question": "Based on exception handling being the process of responding to exceptions during program execution, what programming element is related to this process?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "Amoeba",
-        "relation_to_answer": "Amoeba is a distributed operating system",
-        "iteration": "2",
-        "type": "stuff",
-        "question": "Given that Amoeba is a distributed operating system, what programming - related thing can be associated with this operating system in terms of writing instructions?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "Andrew S. Tanenbaum",
-        "relation_to_answer": "Andrew S. Tanenbaum developed Amoeba",
-        "iteration": "2",
-        "type": "people",
-        "question": "Since Andrew S. Tanenbaum developed Amoeba, what programming - related creation is associated with his work?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "Vrije Universiteit Amsterdam",
-        "relation_to_answer": "Amoeba was developed at Vrije Universiteit Amsterdam by Andrew S. Tanenbaum and others",
-        "iteration": "2",
-        "type": "organization",
-        "question": "Based on Amoeba being developed at Vrije Universiteit Amsterdam by Andrew S. Tanenbaum and others, what programming - relevant output is related to this university?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "Python programming language",
-        "relation_to_answer": "The syntax of Python programming language defines how a Python program is written and interpreted",
-        "iteration": "2",
-        "type": "stuff",
-        "question": "Given that the syntax of Python programming language defines how something is written and interpreted, what is that something in programming?"
-    },
-    {
-        "answer": "Python program",
-        "keywords": "syntax",
-        "relation_to_answer": "The syntax of Python programming language defines how a Python program is written and interpreted",
-        "iteration": "2",
-        "type": "stuff",
-        "question": "Since the syntax of Python programming language defines how a particular thing is written and interpreted, what is that thing in programming?"
+        "question": "What was capable of interfacing with the Amoeba operating system?"
     }
 ]

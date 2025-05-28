@@ -6,7 +6,7 @@ from utils.wiki import search_wikipedia
 from utils.utils import get_system_prompt, query_prompt, filter_keywords, \
     save_string_as_json, load_question_indices, prepare_student_task, get_keywords_from_summary
 
-NUM_LOOPS = 3
+NUM_LOOPS = 2
 NUM_RESULTS = 3
 MODEL_ENDPOINT_ID = "doubao-1-5-pro-256k-250115" 
 LANGUAGE = "en"
@@ -25,13 +25,6 @@ QUESTION_INDEX_FILE = "/data1/lz/loop_QA/questions_to_answer.txt" # 假设您的
 """
 
 def loop_over_prompts(read_answer: str, read_wiki_summary: str, loop_id : int) -> str:
-    # check_suit_agent = init_agent("check_suit_prompt")
-    # check_suit_user_prompt = query_prompt("check_suit_prompt", prompt1 = read_answer, prompt2 = read_wiki_summary) # "你是一个严谨的内容匹配分析师。你的任务是判断下面提供的 [维基百科摘要] 是否与给定的 [关键词] 紧密相关且内容有效。\n\n所谓“有效”指的是，摘要内容不是错误页面、消歧义页或空洞无物的描述。\n\n如果内容相关且有效，请只回答 'yes'。\n如果内容不相关或无效，请只回答 'no'。\n\n不要添加任何其他解释或文字。\n\n---\n\n[关键词]:\nPython program\n\n[维基百科摘要]:\nPython is a high-level, general-purpose programming language."
-    # check_suit_response = check_suit_agent.run(check_suit_user_prompt)
-    
-    # if check_suit_response == "no":
-    #     return None
-    
     sumary_agent = init_agent("summary_prompt")
     sumary_user_prompt = query_prompt("summary_prompt", prompt1 = read_wiki_summary, prompt2=str(loop_id))
     sumary_response = sumary_agent.run(sumary_user_prompt)
@@ -39,13 +32,6 @@ def loop_over_prompts(read_answer: str, read_wiki_summary: str, loop_id : int) -
     # save the summary response for the loop
     # sumary_response = filter_keywords(sumary_response)
     save_string_as_json(sumary_response, f"/data1/lz/loop_QA/result/summary_response_{loop_id}.json")
-    
-    relation_agent = init_agent("relation_prompt")
-    relation_user_prompt = query_prompt("relation_prompt", prompt1 = read_answer, prompt2 = sumary_response)
-    relation_response = relation_agent.run(relation_user_prompt)
-    
-    # save the relation response for the loop
-    save_string_as_json(relation_response, f"/data1/lz/loop_QA/result/relation_response_{loop_id}.json")
     
     return sumary_response
 
@@ -70,6 +56,9 @@ if __name__ == "__main__":
         print(f"Loop {i+1}/{NUM_LOOPS}")
         
         loop_over_prompts(tmp_read_answer, tmp_read_wiki_summary, i + 1)
+        
+        if i == NUM_LOOPS - 1:
+            break
         
         # 在每次循环中，根据/data1/lz/loop_QA/result/summary_response_{i}.json，再次调用 search_wikipedia，生成 tmp_read_wiki_summary
         print(f"\n--- 准备第 {i+1} 轮循环的输入 ---")
@@ -106,5 +95,13 @@ if __name__ == "__main__":
             time.sleep(1) 
         
         tmp_read_wiki_summary = all_new_summaries
+
+    relation_agent = init_agent("relation_prompt")
+    relation_user_prompt = query_prompt("relation_prompt", prompt1 = read_answer, prompt2 = sumary_response)
+    relation_response = relation_agent.run(relation_user_prompt)
+    
+    # save the relation response for the loop
+    save_string_as_json(relation_response, f"/data1/lz/loop_QA/result/relation_response.json")
+    
 
     print("\n--- 启动 Student Agent 进行最终解答 ---")
