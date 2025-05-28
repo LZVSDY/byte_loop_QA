@@ -11,7 +11,6 @@ NUM_RESULTS = 3
 MODEL_ENDPOINT_ID = "doubao-1-5-pro-256k-250115" 
 LANGUAGE = "en"
 RESULT_DIR = "/data1/lz/loop_QA/result"
-QUESTION_INDEX_FILE = "/data1/lz/loop_QA/questions_to_answer.txt" # 假设您的索引文件叫这个名字
 
 """
     # 1. 创建一个 Agent 实例
@@ -26,12 +25,12 @@ QUESTION_INDEX_FILE = "/data1/lz/loop_QA/questions_to_answer.txt" # 假设您的
 
 def loop_over_prompts(read_answer: str, read_wiki_summary: str, loop_id : int) -> str:
     sumary_agent = init_agent("summary_prompt")
-    sumary_user_prompt = query_prompt("summary_prompt", prompt1 = read_wiki_summary, prompt2=str(loop_id))
+    sumary_user_prompt = query_prompt("summary_prompt", prompt1 = read_wiki_summary, prompt2=loop_id, prompt3=read_answer)
     sumary_response = sumary_agent.run(sumary_user_prompt)
     
     # save the summary response for the loop
     # sumary_response = filter_keywords(sumary_response)
-    save_string_as_json(sumary_response, f"/data1/lz/loop_QA/result/summary_response_{loop_id}.json")
+    save_string_as_json(sumary_response, f"{RESULT_DIR}/summary_response_{loop_id}.json")
     
     return sumary_response
 
@@ -42,66 +41,71 @@ def init_agent(choose_prompt: str = "system_prompt") -> ArkAgent:
     system_prompt = get_system_prompt(choose_prompt)
     return ArkAgent(model_id=MODEL_ENDPOINT_ID, system_prompt=system_prompt)
 
+def get_pair_of_keyworks_wiki_summary(query: str, loop_id: int) -> tuple[str, list[str]]:
+    """
+    Get a pair of keywords and their corresponding Wikipedia summary.
+    
+    Args:
+        query (str): The query to search for.
+        
+    Returns:
+        tuple: A tuple containing the query and a list of Wikipedia summaries.
+    """
+    wiki_summary = search_wikipedia(query, num_results=NUM_RESULTS, language=LANGUAGE, loop_id=loop_id)
+    return query, wiki_summary
+
+
 if __name__ == "__main__":
     # read_answer = get_key_from_file()
-    read_answer = "Python program"
-    read_wiki_summary = search_wikipedia(read_answer, num_results=NUM_RESULTS, language=LANGUAGE, loop_id = 1) # read_wiki_summary = ['Python is a high-level, general-purpose programming language.'], NUM_RESULTS = 1, LANGUAGE = 'en'
+    answer = ["Python program"]
     
-    tmp_read_answer = read_answer
-    tmp_read_wiki_summary = read_wiki_summary
-    # tmp_read_answer = "Python program"
-    # tmp_read_wiki_summary = ['Python is a high-level, general-purpose programming language.']    
-    
-    for i in range(NUM_LOOPS):
-        print(f"Loop {i+1}/{NUM_LOOPS}")
-        
-        loop_over_prompts(tmp_read_answer, tmp_read_wiki_summary, i + 1)
-        
-        if i == NUM_LOOPS - 1:
-            break
-        
-        # 在每次循环中，根据/data1/lz/loop_QA/result/summary_response_{i}.json，再次调用 search_wikipedia，生成 tmp_read_wiki_summary
-        print(f"\n--- 准备第 {i+1} 轮循环的输入 ---")
-        
-        # 2.1. 定义刚刚生成的 summary 文件路径
-        summary_file_path = os.path.join(RESULT_DIR, f"summary_response_{i + 1}.json")
-        
-        # 2.2. 从该文件中提取所有关键词
-        new_keywords = get_keywords_from_summary(summary_file_path)
-        
-        if not new_keywords:
-            print("🔴 错误: 未能从 summary 文件中提取到任何关键词，无法进行下一次搜索。循环终止。")
-            break
+    for now_answer in answer:
+        answer_all = [answer_all]
+        for i in range(NUM_LOOPS):
+            print(f"Loop {i+1}/{NUM_LOOPS}")
             
-        print(f"从 summary_response_{i}.json 中提取到 {len(new_keywords)} 个新关键词: {new_keywords}")
-        
-        # 2.3. 使用提取出的关键词进行新的维基百科搜索
-        all_new_summaries = [] # 创建一个空列表，用于收集所有新的摘要
-        print("--- 针对每个关键词进行独立的维基百科搜索 ---")
-        for keyword in new_keywords:
-            print(f"正在搜索关键词: '{keyword}'")
-            # 为当前关键词搜索维基百科
-            # 注意：search_wikipedia 本身返回的是一个列表
-            individual_summary_list = search_wikipedia(keyword, num_results=1, language=LANGUAGE, loop_id=i + 2)
+            for answer_raw in answer_all:
+                query, wiki_summary = get_pair_of_keyworks_wiki_summary(answer_raw, loop_id=i + 1)
+                loop_over_prompts(query, wiki_summary, i + 1)
             
-            if individual_summary_list:
-                # 将本次搜索到的摘要（列表）合并到总的摘要列表（all_new_summaries）中
-                all_new_summaries.extend(individual_summary_list)
-                print(f"  -> 成功获取摘要: '{individual_summary_list[0][:50]}...'")
-            else:
-                print(f"  -> 未能获取到 '{keyword}' 的摘要。")
+            if i == NUM_LOOPS - 1:
+                break
             
-            # 暂停一下，避免对API的请求过于频繁
-            time.sleep(1) 
-        
-        tmp_read_wiki_summary = all_new_summaries
+            # 在每次循环中，根据{RESULT_DIR}/summary_response_{i}.json，再次调用 search_wikipedia，生成 tmp_read_wiki_summary
+            print(f"\n--- 准备第 {i+1} 轮循环的输入 ---")
+            
+            summary_file_path = os.path.join(RESULT_DIR, f"summary_response_{i + 1}.json")
+            new_keywords = get_keywords_from_summary(summary_file_path)
+            
+            if not new_keywords:
+                print("🔴 错误: 未能从 summary 文件中提取到任何关键词，无法进行下一次搜索。循环终止。")
+                break
+                
+            print(f"从 summary_response_{i}.json 中提取到 {len(new_keywords)} 个新关键词: {new_keywords}")
+            
+            answer_all = new_keywords
+            time.sleep(1)
 
-    relation_agent = init_agent("relation_prompt")
-    relation_user_prompt = query_prompt("relation_prompt", prompt1 = read_answer, prompt2 = sumary_response)
-    relation_response = relation_agent.run(relation_user_prompt)
-    
-    # save the relation response for the loop
-    save_string_as_json(relation_response, f"/data1/lz/loop_QA/result/relation_response.json")
-    
+        sumary_all_response = []
+        # 3.1. 读取所有 summary_response_{i}.json 文件，并将其内容合并到 sumary_all_response 列表中
+        for i in range(NUM_LOOPS):
+            summary_file_path = os.path.join(RESULT_DIR, f"summary_response_{i + 1}.json")
+            if os.path.exists(summary_file_path):
+                with open(summary_file_path, 'r') as file:
+                    summary_data = json.load(file)
+                    sumary_all_response.append(summary_data)
+            summary_all_response_str = json.dumps(sumary_all_response, indent=2, ensure_ascii=False)
 
-    print("\n--- 启动 Student Agent 进行最终解答 ---")
+        relation_agent = init_agent("relation_prompt")
+        relation_user_prompt = query_prompt("relation_prompt", prompt1 = now_answer, prompt2 = summary_all_response_str)
+        relation_response = relation_agent.run(relation_user_prompt)
+        
+        # save the relation response for the loop
+        save_string_as_json(relation_response, f"{RESULT_DIR}/relation_response.json")
+
+        print("\n--- 启动 Student Agent 进行最终解答 ---")
+        student_agent = init_agent("student_prompt")
+        student_user_prompt = query_prompt("student_prompt", prompt1 = relation_response)
+        student_response = student_agent.run(student_user_prompt)
+        print(f"Student Agent 返回: {student_response}")
+        save_string_as_json(student_response, f"{RESULT_DIR}/student_response.json")

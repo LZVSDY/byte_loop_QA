@@ -16,40 +16,36 @@ def get_system_prompt(file_name: str = "system_prompt", defult_path: str = SYSTE
 #     usr_prompt = usr_prompt_format.format(prompt1=prompt1, prompt2=prompt2)
 #     return usr_prompt
 
-def query_prompt(file_name: str, prompt1: any = "", prompt2: any = None) -> str:
+def turn_prompt_to_string(prompt: any) -> str:
+    if prompt is None:
+        return None
+    
+    if isinstance(prompt, list):
+        # 如果是列表，将其元素连接成一个字符串
+        return "\n".join(prompt)
+    elif isinstance(prompt, str):
+        # 如果是字符串，直接返回
+        return prompt
+    else:
+        # 如果是其他类型，尝试转换为字符串
+        return str(prompt)
+
+def query_prompt(file_name: str, prompt1: any = "", prompt2: any = None, prompt3: any = None) -> str:
     """
     Generates a user prompt by formatting a template file with provided data.
     This version intelligently handles if prompt2 is a list of strings.
     """
-    # --- Start of Changes ---
-    # If prompt2 is None, we can still format the string without it
-    if isinstance(prompt1, list):
-        # If prompt1 is a list, join its elements into a single string
-        prompt1_str = "\n".join(prompt1)
-    else:
-        # If prompt1 is already a string, use it as is
-        prompt1_str = prompt1
-    
-    # Intelligently handle the format of prompt2
-    if prompt2 is not None:
-        if isinstance(prompt2, list):
-            # If the input is a list (like from search_wikipedia),
-            # join its elements into a single, clean string separated by newlines.
-            # This handles cases where you might get multiple summary paragraphs.
-            prompt2_str = "\n".join(prompt2)
-        else:
-            # If it's not a list, assume it's already a string or can be converted.
-            prompt2_str = str(prompt2)
-            
-        # --- End of Changes ---
-        
-        usr_prompt_format = get_system_prompt(file_name, defult_path=USR_PROMPT_PARH)
-        
-        # Use the processed string in the format call
+    usr_prompt_format = get_system_prompt(file_name, defult_path=USR_PROMPT_PARH)
+
+    prompt1_str = turn_prompt_to_string(prompt1)
+    prompt2_str = turn_prompt_to_string(prompt2)
+    prompt3_str = turn_prompt_to_string(prompt3)
+    if prompt3_str is not None:
+        usr_prompt = usr_prompt_format.format(prompt1=prompt1_str, prompt2=prompt2_str, prompt3=prompt3_str)
+    elif prompt2_str is not None:
         usr_prompt = usr_prompt_format.format(prompt1=prompt1_str, prompt2=prompt2_str)
     else:
-        usr_prompt_format = get_system_prompt(file_name, defult_path=USR_PROMPT_PARH)
-        usr_prompt = usr_prompt_format.format(prompt1=prompt1_str)
+        usr_prompt = usr_prompt_format.format(prompt1=prompt1_str)                    
     
     return usr_prompt
 
@@ -126,8 +122,9 @@ def save_string_as_json(json_string: str, output_file_path: str):
         
         # 2. 将解析后的 Python 对象写入文件
         # 'w' 表示写入模式，如果文件已存在则会覆盖。
+        # 'a' 表示追加模式，如果文件不存在则会创建新文件。
         # encoding='utf-8' 对于处理中文等非英文字符至关重要。
-        with open(output_file_path, 'w', encoding='utf-8') as f:
+        with open(output_file_path, 'a', encoding='utf-8') as f:
             # json.dump() 将 Python 对象序列化成 JSON 格式的字符串并写入文件。
             # indent=4: 添加4个空格的缩进，让文件内容格式优美，易于阅读。
             # ensure_ascii=False: 确保中文字符能被正确写入，而不是被转换成 ASCII 编码。
