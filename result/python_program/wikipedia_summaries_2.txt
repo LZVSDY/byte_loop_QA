@@ -1,0 +1,30 @@
+A high-level programming language is a programming language with strong abstraction from the details of the computer.
+Elixir is a functional, concurrent, high-level general-purpose programming language that runs on the BEAM virtual machine, which is also used to implement the Erlang programming language.
+Python is a high-level, general-purpose programming language.
+The syntax of the Python programming language is the set of rules that defines how a Python program will be written and interpreted (by both the runtime system and by human readers).
+In computer science, the syntax of a computer language is the rules that define the combinations of symbols that are considered to be correctly structured statements or expressions in that language.
+Python is a high-level, general-purpose programming language.
+In computer programming, a runtime system or runtime environment is a sub-system that exists in the computer where a program is created, as well as in the computers where the program is intended to be run.
+Execution in computer and software engineering is the process by which a computer or virtual machine interprets and acts on the instructions of a computer program.
+A runtime library is a library that provides access to the runtime environment that is available to a computer program – tailored to the host platform.
+Automated essay scoring (AES) is the use of specialized computer programs to assign grades to essays written in an educational setting.
+Computer programming or coding is the composition of sequences of instructions, called programs, that computers can follow to perform tasks.
+Human rights are universally recognized moral principles or norms that establish standards of human behavior and are often protected by both national and international laws.
+The 1990s (often referred and shortened to as "the '90s" or "the Nineties") was the decade that began on 1 January 1990, and ended on 31 December 1999.
+Fashion in the 1990s was defined by a return to minimalist fashion, in contrast to the more elaborate and flashy trends of the 1980s.
+Popular music in the 1990s  saw the continuation of teen pop and dance-pop trends which had emerged in the 1970s and 1980s.
+1999 (MCMXCIX) was a common year starting on Friday of the Gregorian calendar, the 1999th year of the Common Era (CE) and Anno Domini (AD) designations, the 999th  year of the 2nd millennium, the 99th  year of the 20th century, and the  10th  and last year of the 1990s decade.
+The following is a list of notable deaths in December 1989.
+The Romanian revolution (Romanian: Revoluția română) was a period of violent civil unrest in Romania during December 1989 as a part of the revolutions of 1989 that occurred in several countries around the world, primarily within the Eastern Bloc.
+Guido van Rossum (Dutch: [ˈxidoː vɑn ˈrɔsʏm]; born 31 January 1956) is a Dutch programmer.
+Just van Rossum (born 1966 in Haarlem) is a Dutch typeface designer, software developer, and professor at the Royal Academy of Art in the Hague.
+The programming language Python was conceived in the late 1980s, and its implementation was started in December 1989 by Guido van Rossum at CWI in the Netherlands as a successor to ABC capable of exception handling and interfacing with the Amoeba operating system.
+The Netherlands, informally Holland, is a country in Northwestern Europe, with overseas territories in the Caribbean.
+Utrecht ( YOO-trekt; Dutch: [ˈytrɛxt] ; Utrecht dialect: Ut(e)reg [ˈyt(ə)ʁɛχ]) is the fourth-largest city of the Netherlands, as well as the capital and the most populous city of the province of Utrecht.
+The Kingdom of the Netherlands (Dutch: Koninkrijk der Nederlanden, pronounced [ˈkoːnɪŋkrɛiɡ dɛr ˈneːdərlɑndə(n)] ;, West Frisian: Keninkryk fan de Nederlannen, Papiamento: Reino Hulandes), commonly known simply as the Netherlands, is a sovereign state consisting of a collection of constituent territories united under the monarch of the Netherlands, who functions as head of state.
+The British Broadcasting Corporation (BBC) is a British public service broadcaster headquartered at Broadcasting House in London, England.
+The Australian Broadcasting Corporation (ABC) is Australia’s principal public service broadcaster.
+The American Broadcasting Company (ABC) is an American commercial broadcast television and radio network that serves as the flagship property of the Disney Entertainment division of the Walt Disney Company.
+In computing and computer programming, exception handling is the process of responding to the occurrence of exceptions – anomalous or exceptional conditions requiring special processing – during the execution of a program.
+In computer programming, several language mechanisms exist for exception handling.
+Exception handling syntax is the set of keywords and/or structures provided by a computer programming language to allow exception handling, which separates the handling of errors that arise during a program's operation from its ordinary processes.

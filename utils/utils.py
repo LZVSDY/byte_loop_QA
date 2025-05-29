@@ -103,6 +103,18 @@ def filter_keywords(json_string: str, threshold: float = THRESHOLD) -> str:
     # indent=2 或 4 使得字符串本身也带有格式，便于调试和查看
     return json.dumps(data_dict, ensure_ascii=False, indent=4)
 
+def save_list_as_json(data_list: list, output_file_path: str):
+    """
+    将一个Python列表（其中包含字典）美化后写入 .json 文件。
+    这个函数总是使用 'w' 模式，覆盖已有文件。
+    """
+    try:
+        with open(output_file_path, 'w', encoding='utf-8') as f:
+            json.dump(data_list, f, indent=4, ensure_ascii=False)
+        print(f"✅ 成功将列表保存为 JSON 文件: {output_file_path}")
+    except Exception as e:
+        print(f"❌ 写入 JSON 文件时发生错误: {e}")
+
 def save_string_as_json(json_string: str, output_file_path: str):
     """
     解析一个字符串（应为JSON格式），并将其美化后存为 .json 文件。
@@ -124,7 +136,7 @@ def save_string_as_json(json_string: str, output_file_path: str):
         # 'w' 表示写入模式，如果文件已存在则会覆盖。
         # 'a' 表示追加模式，如果文件不存在则会创建新文件。
         # encoding='utf-8' 对于处理中文等非英文字符至关重要。
-        with open(output_file_path, 'a', encoding='utf-8') as f:
+        with open(output_file_path, 'w', encoding='utf-8') as f:
             # json.dump() 将 Python 对象序列化成 JSON 格式的字符串并写入文件。
             # indent=4: 添加4个空格的缩进，让文件内容格式优美，易于阅读。
             # ensure_ascii=False: 确保中文字符能被正确写入，而不是被转换成 ASCII 编码。

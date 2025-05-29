@@ -1,0 +1,80 @@
+[
+    {
+        "keywords": "Python",
+        "relation_to_answer": "Python program is written using Python programming language",
+        "iteration": "1",
+        "type": "stuff"
+    },
+    {
+        "keywords": "high-level, general-purpose programming language",
+        "relation_to_answer": "Python, which Python program is based on, is a high-level, general-purpose programming language",
+        "iteration": "1",
+        "type": "stuff"
+    },
+    {
+        "keywords": "syntax of the Python programming language",
+        "relation_to_answer": "Syntax of the Python programming language defines how a Python program is written and interpreted",
+        "iteration": "1",
+        "type": "stuff"
+    },
+    {
+        "keywords": "runtime system",
+        "relation_to_answer": "Runtime system interprets a Python program as defined by the syntax of the Python programming language",
+        "iteration": "1",
+        "type": "stuff"
+    },
+    {
+        "keywords": "human readers",
+        "relation_to_answer": "Human readers can interpret a Python program as defined by the syntax of the Python programming language",
+        "iteration": "1",
+        "type": "people"
+    },
+    {
+        "keywords": "late 1980s",
+        "relation_to_answer": "Python, which Python program is based on, was conceived in the late 1980s",
+        "iteration": "1",
+        "type": "time"
+    },
+    {
+        "keywords": "December 1989",
+        "relation_to_answer": "Implementation of Python, which Python program is based on, started in December 1989",
+        "iteration": "1",
+        "type": "time"
+    },
+    {
+        "keywords": "Guido van Rossum",
+        "relation_to_answer": "Guido van Rossum started the implementation of Python, which Python program is based on",
+        "iteration": "1",
+        "type": "people"
+    },
+    {
+        "keywords": "CWI",
+        "relation_to_answer": "Guido van Rossum started the implementation of Python, which Python program is based on, at CWI",
+        "iteration": "1",
+        "type": "organization"
+    },
+    {
+        "keywords": "Netherlands",
+        "relation_to_answer": "Guido van Rossum started the implementation of Python, which Python program is based on, at CWI in the Netherlands",
+        "iteration": "1",
+        "type": "space"
+    },
+    {
+        "keywords": "ABC",
+        "relation_to_answer": "Python, which Python program is based on, was a successor to ABC",
+        "iteration": "1",
+        "type": "stuff"
+    },
+    {
+        "keywords": "exception handling",
+        "relation_to_answer": "Python, which Python program is based on, is capable of exception handling",
+        "iteration": "1",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Amoeba operating system",
+        "relation_to_answer": "Python, which Python program is based on, can interface with the Amoeba operating system",
+        "iteration": "1",
+        "type": "stuff"
+    }
+]

@@ -1,0 +1,584 @@
+[
+    {
+        "keywords": "Python",
+        "relation_to_answer": "Self - reference",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Elixir",
+        "relation_to_answer": "Elixir is a kind of high - level, general - purpose programming language",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "BEAM virtual machine",
+        "relation_to_answer": "The BEAM virtual machine is used to run Elixir, a high - level, general - purpose programming language",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Erlang programming language",
+        "relation_to_answer": "The BEAM virtual machine used to run Elixir (a high - level, general - purpose programming language) is also used to implement the Erlang programming language",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Python",
+        "relation_to_answer": "Python is a high - level, general - purpose programming language",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Python program",
+        "relation_to_answer": "The syntax of the Python programming language defines how a Python program will be written and interpreted",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "runtime system",
+        "relation_to_answer": "The syntax of the Python programming language defines how a Python program will be interpreted by the runtime system",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "human readers",
+        "relation_to_answer": "The syntax of the Python programming language defines how a Python program will be interpreted by human readers",
+        "iteration": "2",
+        "type": "people"
+    },
+    {
+        "keywords": "computer science",
+        "relation_to_answer": "In computer science, the syntax of the Python programming language is part of the rules for correctly structured statements in a computer language",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "computer language",
+        "relation_to_answer": "The syntax of the Python programming language is part of the rules for correctly structured statements in a computer language",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Python",
+        "relation_to_answer": "The syntax of the Python programming language belongs to Python, which is a high - level, general - purpose programming language",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "high - level, general - purpose programming language",
+        "relation_to_answer": "Python, which the syntax belongs to, is a high - level, general - purpose programming language",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "computer programming",
+        "relation_to_answer": "runtime system is a sub - system in the computer where a program in computer programming is created",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "computer",
+        "relation_to_answer": "runtime system exists in the computer where a program is created and where the program is intended to be run",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "program",
+        "relation_to_answer": "runtime system exists in the computer where a program is created and where the program is intended to be run",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Execution",
+        "relation_to_answer": "Execution in computer and software engineering is the process by which a computer or virtual machine interprets and acts on the instructions of a computer program, while runtime system is related to the running of a program",
+        "iteration": "2",
+        "type": "event"
+    },
+    {
+        "keywords": "computer and software engineering",
+        "relation_to_answer": "Execution in computer and software engineering is the process by which a computer or virtual machine interprets and acts on the instructions of a computer program, while runtime system is related to the running of a program",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "computer program",
+        "relation_to_answer": "A runtime library provides access to the runtime environment available to a computer program, and runtime system is related to the running of a computer program",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "runtime library",
+        "relation_to_answer": "A runtime library provides access to the runtime environment available to a computer program, and runtime system is related to the runtime environment",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "host platform",
+        "relation_to_answer": "A runtime library is tailored to the host platform and is related to the runtime environment which runtime system is part of",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Automated essay scoring",
+        "relation_to_answer": "Automated essay scoring uses specialized computer programs to assign grades to essays written in an educational setting, and human readers are not directly involved in this automated process",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "computer programs",
+        "relation_to_answer": "Automated essay scoring uses computer programs to assign grades to essays written in an educational setting, while human readers have a different role in essay evaluation",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Computer programming",
+        "relation_to_answer": "Computer programming is the composition of sequences of instructions, different from the role of human readers in essay - related tasks",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "programs",
+        "relation_to_answer": "Programs are sequences of instructions in computer programming, distinct from the function of human readers",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "computers",
+        "relation_to_answer": "Computers follow programs in computer programming, unlike human readers who are involved in different activities",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Human rights",
+        "relation_to_answer": "Human rights are moral principles, different from the role of human readers in the described computer - related and educational tasks",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "national laws",
+        "relation_to_answer": "National laws protect human rights, different from the role of human readers in the given context",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "international laws",
+        "relation_to_answer": "International laws protect human rights, different from the role of human readers in the described scenarios",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "1990s",
+        "relation_to_answer": "The 1990s came after the late 1980s",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "1990",
+        "relation_to_answer": "1990 is the starting year of the decade after the late 1980s",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "1999",
+        "relation_to_answer": "1999 is the ending year of the decade after the late 1980s",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "1980s",
+        "relation_to_answer": "The fashion in the 1990s was in contrast to that of the 1980s, and the late 1980s preceded the 1990s",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "1970s",
+        "relation_to_answer": "The teen pop and dance - pop trends emerging in the 1970s continued in the 1990s, after the late 1980s",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "minimalist fashion",
+        "relation_to_answer": "Fashion in the 1990s (after the late 1980s) was defined by a return to minimalist fashion",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "teen pop",
+        "relation_to_answer": "Teen pop trends emerging in the 1970s and 1980s continued in the 1990s, after the late 1980s",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "dance - pop",
+        "relation_to_answer": "Dance - pop trends emerging in the 1970s and 1980s continued in the 1990s, after the late 1980s",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "1999",
+        "relation_to_answer": "1999 is in a time period different from December 1989",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "Gregorian calendar",
+        "relation_to_answer": "December 1989 is calculated based on the Gregorian calendar",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Common Era (CE)",
+        "relation_to_answer": "December 1989 is within the time frame of the Common Era (CE)",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Anno Domini (AD)",
+        "relation_to_answer": "December 1989 is within the time frame of Anno Domini (AD)",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "2nd millennium",
+        "relation_to_answer": "December 1989 is within the 2nd millennium",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "20th century",
+        "relation_to_answer": "December 1989 is within the 20th century",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "1990s decade",
+        "relation_to_answer": "December 1989 is within the 1990s decade",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "Romanian revolution",
+        "relation_to_answer": "The Romanian revolution occurred during December 1989",
+        "iteration": "2",
+        "type": "event"
+    },
+    {
+        "keywords": "Romania",
+        "relation_to_answer": "The Romanian revolution, which occurred in December 1989, was in Romania",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "revolutions of 1989",
+        "relation_to_answer": "The Romanian revolution during December 1989 was part of the revolutions of 1989",
+        "iteration": "2",
+        "type": "event"
+    },
+    {
+        "keywords": "Eastern Bloc",
+        "relation_to_answer": "The revolutions of 1989, in which the Romanian revolution in December 1989 was involved, occurred primarily within the Eastern Bloc",
+        "iteration": "2",
+        "type": "organization"
+    },
+    {
+        "keywords": "1956",
+        "relation_to_answer": "Guido van Rossum was born in 1956",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "31 January",
+        "relation_to_answer": "Guido van Rossum was born on 31 January",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "Just van Rossum",
+        "relation_to_answer": "Just van Rossum is related to Guido van Rossum (family relation assumed as same last name)",
+        "iteration": "2",
+        "type": "people"
+    },
+    {
+        "keywords": "1966",
+        "relation_to_answer": "Just van Rossum was born in 1966",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "Haarlem",
+        "relation_to_answer": "Just van Rossum was born in Haarlem",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "Royal Academy of Art in the Hague",
+        "relation_to_answer": "Just van Rossum is a professor at the Royal Academy of Art in the Hague",
+        "iteration": "2",
+        "type": "organization"
+    },
+    {
+        "keywords": "Python",
+        "relation_to_answer": "Guido van Rossum conceived the programming language Python in the late 1980s",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "late 1980s",
+        "relation_to_answer": "Guido van Rossum conceived Python in the late 1980s",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "December 1989",
+        "relation_to_answer": "Guido van Rossum started the implementation of Python in December 1989",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "CWI",
+        "relation_to_answer": "Guido van Rossum started Python implementation at CWI",
+        "iteration": "2",
+        "type": "organization"
+    },
+    {
+        "keywords": "Netherlands",
+        "relation_to_answer": "Guido van Rossum started Python implementation at CWI in the Netherlands",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "ABC",
+        "relation_to_answer": "Python was conceived as a successor to ABC by Guido van Rossum",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Amoeba operating system",
+        "relation_to_answer": "Python was designed to be capable of interfacing with the Amoeba operating system by Guido van Rossum",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "",
+        "relation_to_answer": "",
+        "iteration": "2",
+        "type": ""
+    },
+    {
+        "keywords": "Holland",
+        "relation_to_answer": "Holland is an informal name of the Netherlands",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "Northwestern Europe",
+        "relation_to_answer": "The Netherlands is a country in Northwestern Europe",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "Caribbean",
+        "relation_to_answer": "The Netherlands has overseas territories in the Caribbean",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "Utrecht",
+        "relation_to_answer": "Utrecht is the fourth - largest city of the Netherlands and the capital and most populous city of the province of Utrecht",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "Utrecht dialect",
+        "relation_to_answer": "Utrecht dialect is Ut(e)reg in Utrecht, which is in the Netherlands",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Kingdom of the Netherlands",
+        "relation_to_answer": "The Kingdom of the Netherlands is a sovereign state consisting of a collection of constituent territories united under the monarch of the Netherlands",
+        "iteration": "2",
+        "type": "organization"
+    },
+    {
+        "keywords": "Dutch",
+        "relation_to_answer": "The Kingdom of the Netherlands is Koninkrijk der Nederlanden in Dutch",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "West Frisian",
+        "relation_to_answer": "The Kingdom of the Netherlands is Keninkryk fan de Nederlannen in West Frisian",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Papiamento",
+        "relation_to_answer": "The Kingdom of the Netherlands is Reino Hulandes in Papiamento",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "British Broadcasting Corporation (BBC)",
+        "relation_to_answer": "It is a different broadcasting corporation from ABC",
+        "iteration": "2",
+        "type": "organization"
+    },
+    {
+        "keywords": "Broadcasting House",
+        "relation_to_answer": "It is the headquarters of BBC which is different from ABC",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "London",
+        "relation_to_answer": "It is the location of Broadcasting House which is related to BBC different from ABC",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "England",
+        "relation_to_answer": "It is the place where London (location of Broadcasting House related to BBC different from ABC) is located",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "Australian Broadcasting Corporation (ABC)",
+        "relation_to_answer": "It is a different ABC from the given ABC",
+        "iteration": "2",
+        "type": "organization"
+    },
+    {
+        "keywords": "Australia",
+        "relation_to_answer": "It is the country related to the Australian Broadcasting Corporation (a different ABC from the given ABC)",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "American Broadcasting Company (ABC)",
+        "relation_to_answer": "It is a different ABC from the given ABC",
+        "iteration": "2",
+        "type": "organization"
+    },
+    {
+        "keywords": "American",
+        "relation_to_answer": "It is related to the American Broadcasting Company (a different ABC from the given ABC)",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "Disney Entertainment division",
+        "relation_to_answer": "It is related to the American Broadcasting Company (a different ABC from the given ABC)",
+        "iteration": "2",
+        "type": "organization"
+    },
+    {
+        "keywords": "Walt Disney Company",
+        "relation_to_answer": "It is related to the Disney Entertainment division which is related to the American Broadcasting Company (a different ABC from the given ABC)",
+        "iteration": "2",
+        "type": "organization"
+    },
+    {
+        "keywords": "computing",
+        "relation_to_answer": "Exception handling is a process in computing and computer programming",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "computer programming",
+        "relation_to_answer": "Exception handling is a process in computing and computer programming",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "exceptions",
+        "relation_to_answer": "Exception handling is the process of responding to the occurrence of exceptions",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "program",
+        "relation_to_answer": "Exception handling occurs during the execution of a program",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "language mechanisms",
+        "relation_to_answer": "Several language mechanisms exist for exception handling in computer programming",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "Exception handling syntax",
+        "relation_to_answer": "Exception handling syntax is the set of keywords and/or structures for exception handling",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "keywords",
+        "relation_to_answer": "Exception handling syntax consists of keywords and/or structures",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "structures",
+        "relation_to_answer": "Exception handling syntax consists of keywords and/or structures",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "computer programming language",
+        "relation_to_answer": "Exception handling syntax is provided by a computer programming language",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "errors",
+        "relation_to_answer": "Exception handling separates the handling of errors from ordinary processes",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "",
+        "relation_to_answer": "",
+        "iteration": "2",
+        "type": "time"
+    },
+    {
+        "keywords": "",
+        "relation_to_answer": "",
+        "iteration": "2",
+        "type": "space"
+    },
+    {
+        "keywords": "",
+        "relation_to_answer": "",
+        "iteration": "2",
+        "type": "num"
+    },
+    {
+        "keywords": "",
+        "relation_to_answer": "",
+        "iteration": "2",
+        "type": "people"
+    },
+    {
+        "keywords": "",
+        "relation_to_answer": "",
+        "iteration": "2",
+        "type": "organization"
+    },
+    {
+        "keywords": "",
+        "relation_to_answer": "",
+        "iteration": "2",
+        "type": "stuff"
+    },
+    {
+        "keywords": "",
+        "relation_to_answer": "",
+        "iteration": "2",
+        "type": "event"
+    }
+]
