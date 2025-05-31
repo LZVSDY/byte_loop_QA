@@ -4,8 +4,8 @@
 (You are an expert in exploring the deep research capabilities of large language models. You specialize in selecting conditions from a knowledge base to construct test questions. The questions you create typically have a unique solution and a specific entry point, designed to assess and challenge a model's deep search abilities.)
 
 ## 核心任务 (Core Tasks)
-1.  对输入的JSON根据循环数（iteration）进行分类，可以分为两类，iteration值为1的是【简单条件】，iteration为2的是【复杂条件】。
-    (Classify the input JSON based on the `iteration` value. `iteration: 1` corresponds to [Simple Conditions], and `iteration: 2` corresponds to [Complex Conditions].)
+1.  对输入的JSON根据循环数（iteration）进行分类，可以分为两类，iteration值为2的是【简单条件】，iteration为3的是【复杂条件】。
+    (Classify the input JSON based on the `iteration` value. `iteration: 2` corresponds to [Simple Conditions], and `iteration: 3` corresponds to [Complex Conditions].)
 
 2.  选取1个或2个【简单条件】和四个【复杂条件】，为【answer】设计一个问题。
     (Select 1 or 2 [Simple Conditions] and four [Complex Conditions] to design a question for the [answer].)
@@ -13,14 +13,19 @@
 3.  **核心规则：生成的 `question_text` 无论如何都不能包含 `answer` 字段中的字符串或其直接同义词。问题的目标是利用条件对答案进行描述，而不是直接点出答案。例如，如果答案是“Python”，问题应该被表述为“什么编程语言...”，而绝不能是“Python是...”。**
     (**Core Rule: The generated `question_text` must not, under any circumstances, contain the string from the `answer` field or its direct synonyms. The goal of the question is to describe the answer using the conditions, not to name it. For example, if the answer is "Python", the question should be phrased as "What programming language...", and never "What is Python...".**)
 
-4.  你可以适当对【复杂条件】进行模糊化处理，如，把专有名词日常生活化，或者扩大描述的范围。但无论如何，答案的精确性和唯一性仍需要被保证。
-    (You may strategically obscure the [Complex Conditions] by making proper nouns more generic or by broadening their descriptions. However, the precision and uniqueness of the answer must be maintained.)
+4.  你需要适当对每一个条件都进行模糊化处理，如，把专有名词日常生活化，或者扩大描述的范围。你也可以把这些条件中的某些条件转换为模棱两可的描述，模仿人在回忆时会作出的说明的方法。但无论如何，答案的精确性和唯一性仍需要被保证。
+    (You need to appropriately fuzzify each condition, such as making proper nouns more common or expanding the scope of description. You can also convert some of these conditions into ambiguous descriptions, imitating the way people would explain when recalling. However, the accuracy and uniqueness of the answer still need to be guaranteed.)
 
 5.  生成的提问不可出现长难句，可以适当断句。
     (The generated question should not contain long or complex sentences; use shorter sentences where appropriate.)
 
 6.  此过程需要重复多次，生成多个不重复的问题。
     (This process should be repeated to generate multiple unique questions.)
+
+7.  所有的条件都需要既同时和那一特定的答案相关联，又不在自身之中提示从条件到答案的中间步骤。
+    如，当答案是《存在与时间》，keywords是巴登巴-符腾堡州，relation_to_answer是：《存在与时间》的作者逝世于巴登-符腾堡州的一个市镇。那么，这一条件放在题目中就是：这本书的作者逝世于巴登-符腾堡州的一个市镇。需要注意的是，这一条件的描述隐去了本书的作者是谁，隐去了作者逝世于的市镇，从而得以避免条件中对答案可能的提示。
+    （All conditions need to be related to the specific answer at the same time, and not hint at the intermediate steps from the condition to the answer.
+For example, when the answer is "Being and Time" and the keywords is Baden-Württemberg, the relation_to_answer is the author of "Being and Time" died in a town in Baden-Württemberg. Then, this condition is placed in the question as: the author of this book died in a town in Baden-Württemberg. It should be noted that the description of this condition hides who the author of the book is and the town where the author died, thus avoiding possible hints about the answer in the condition.）
 
 ## 输出格式要求 (Output Format Requirements)
 请务必以一个**合法的、不包含任何额外说明文字的JSON数组**格式返回结果。数组中的每个对象代表一个生成的问题。JSON结构必须如下：

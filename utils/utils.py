@@ -49,7 +49,7 @@ def query_prompt(file_name: str, prompt1: any = "", prompt2: any = None, prompt3
     
     return usr_prompt
 
-def get_key_from_file(file_path: str = "/data1/lz/loop_QA/key.txt") -> str:
+def get_key_from_file(file_path: str = "/data1/lz/loop_QA/dataset/random_entries.txt") -> list[str]:
     """
     Read a key from a file.
     
@@ -57,11 +57,20 @@ def get_key_from_file(file_path: str = "/data1/lz/loop_QA/key.txt") -> str:
         file_path (str): The path to the file containing the key.
         
     Returns:
-        str: The key read from the file.
+        list[str]: A list of strings, each representing a key.
     """
-    with open(file_path, "r") as file:
-        key = file.read().strip()
-    return key
+    keys = []
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                # 去除行首尾空白字符，并添加到列表中
+                keys.append(line.strip())
+    except FileNotFoundError:
+        print(f"❌ 错误: 文件未找到: {file_path}")
+    except Exception as e:
+        print(f"❌ 发生未知错误: {e}")
+    
+    return keys
 
 def filter_keywords(json_string: str, threshold: float = THRESHOLD) -> str:
     """
@@ -151,6 +160,9 @@ def save_string_as_json(json_string: str, output_file_path: str):
         print("--- [问题字符串开始] ---")
         print(json_string)
         print("--- [问题字符串结束] ---")
+        # save txt file for debugging
+        with open(output_file_path.replace('.json', '.txt'), 'w', encoding='utf-8') as f:
+            f.write(json_string)
         return False # 返回 False 表示失败
 
     except Exception as e:

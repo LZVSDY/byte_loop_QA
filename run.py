@@ -2,17 +2,20 @@ import os
 import json
 import time
 import shutil
+import re
 from utils.agent import ArkAgent
 from utils.wiki import search_wikipedia
-from utils.utils import get_system_prompt, query_prompt, filter_keywords, \
+from utils.utils import get_system_prompt, query_prompt, \
     save_string_as_json, save_list_as_json, \
-    load_question_indices, prepare_student_task, get_keywords_from_summary
+    get_key_from_file, get_keywords_from_summary
 
 NUM_LOOPS = 2
-NUM_RESULTS = 2
-MODEL_ENDPOINT_ID = "doubao-1-5-pro-256k-250115" 
+NUM_RESULTS = 5
+DEEPSEEK_ENDPOINT_ID = "deepseek-r1-250120" 
+DOUBAO_ENDPOINT_ID = "doubao-1-5-pro-256k-250115"
+DOUBAO_THINKING_ENDPOINT_ID = "doubao-1-5-thinking-pro-250415"
 LANGUAGE = "en"
-RESULT_DIR = "/data1/lz/loop_QA/result"
+RESULT_DIR = "/data1/lz/loop_QA/test"
 
 """
     # 1. 创建一个 Agent 实例
@@ -32,12 +35,17 @@ def loop_over_prompts(read_answer: str, read_wiki_summary: str, loop_id : int) -
         
     return sumary_response
 
-def init_agent(choose_prompt: str = "system_prompt") -> ArkAgent:
+def init_agent(choose_prompt: str = "system_prompt", is_student: int = 0) -> ArkAgent:
     """
     Initialize the agent with the system prompt.
     """
     system_prompt = get_system_prompt(choose_prompt)
-    return ArkAgent(model_id=MODEL_ENDPOINT_ID, system_prompt=system_prompt)
+    if is_student:
+        return ArkAgent(model_id=DEEPSEEK_ENDPOINT_ID, system_prompt=system_prompt,
+            api_key_env_var = "d6f26d9-4bad-4280-8972-347815f959b2")
+    else:
+        return ArkAgent(model_id=DOUBAO_ENDPOINT_ID, system_prompt=system_prompt,
+            api_key_env_var = "75a7a2b3-c147-4005-8c14-45a65fe2da90")
 
 def get_pair_of_keyworks_wiki_summary(query: str, loop_id: int, save_dir: str) -> tuple[str, list[str]]:
     """
@@ -52,29 +60,61 @@ def get_pair_of_keyworks_wiki_summary(query: str, loop_id: int, save_dir: str) -
     wiki_summary = search_wikipedia(query, num_results=NUM_RESULTS, language=LANGUAGE, loop_id=loop_id, save_dir = save_dir)
     return query, wiki_summary
 
+def refindoll_str(json_string: str) -> list[str]:
+    regex_pattern = r'"question_text"\s*:\s*"(.*?)"'
+
+    # 使用 re.findall 寻找所有匹配项
+    # 它会返回一个列表，其中只包含捕获组(括号里的部分)的内容
+    extracted_questions = re.findall(regex_pattern, json_string, flags=re.DOTALL)
+
+    all_questions = []
+    
+    # 打印结果
+    print("--- 使用正则表达式提取的结果 ---\n")
+    if extracted_questions:
+        for i, question in enumerate(extracted_questions):
+            # print(f"question_text: {question}\n")
+            all_questions.append({"question_text": question})
+    else:
+        print("没有找到匹配 'question_text' 的内容。")
+    
+    return all_questions
+
 def student_task(current_result_dir: str):
-    # 1. 定义输入和输出文件路径
-    source_file_path = f"{current_result_dir}/relation_response.json" # Assumes this is your input file
+    source_file_path = f"{current_result_dir}/relation_response.json"
     output_file_path = f"{current_result_dir}/student_answers.json"
 
-    # 2. 初始化 Agent 和一个用于存储结果的列表
     student_agent = init_agent("student_prompt")
     all_answers = []
 
-    # 3. 读取包含问题的JSON文件
+    # 读取包含问题的JSON文件
     try:
         with open(source_file_path, 'r', encoding='utf-8') as f:
             questions_data = json.load(f)
             print(f"成功读取 {len(questions_data)} 个问题，来源: {source_file_path}")
     except FileNotFoundError:
-        print(f"错误: 输入文件未找到 {source_file_path}")
-        questions_data = [] # Assign empty list to prevent crash
+        # # read txt file
+        # with open(source_file_path.replace('.json', '.txt'), 'r', encoding='utf-8') as f:
+        #     lines = f.readlines()
+        #     questions_data = [{"question_text": line.strip()} for line in lines if line.strip()]
+        #     print(f"成功读取 {len(questions_data)} 个问题，来源: {source_file_path}")
+        txt_file_path = source_file_path.replace('.json', '.txt')
+        
+        try:
+            with open(txt_file_path, 'r', encoding='utf-8') as f:
+                json_string = f.read()
+                questions_data = refindoll_str(json_string)
+                print(f"成功从TXT文件读取并解析了 {len(questions_data)} 个问题，来源: {txt_file_path}")
+        except:
+            print(f"错误: 无法读取或解析输入文件 {source_file_path} 或 {txt_file_path}")
+            questions_data = []
+            
     except json.JSONDecodeError:
         print(f"错误: 无法解析JSON文件 {source_file_path}")
         questions_data = [] # Assign empty list to prevent crash
 
 
-    # 4. 循环处理每一个问题
+    # 循环处理每一个问题
     for i, item in enumerate(questions_data):
         if "question_text" in item:
             question = item["question_text"]
@@ -86,13 +126,13 @@ def student_task(current_result_dir: str):
             student_response = student_agent.run(student_user_prompt)
             print(f"Agent 返回的答案: {student_response}")
             
-            # 5. 将问题和答案配对，存入结果列表
+            # 将问题和答案配对，存入结果列表
             all_answers.append({
                 "question_text": question,
                 "answer": student_response
             })
 
-    # 6. 将所有结果一次性写入新的JSON文件
+    # 将所有结果一次性写入新的JSON文件
     if all_answers:
         with open(output_file_path, 'w', encoding='utf-8') as f:
             # 使用 json.dump 来美化输出 (indent=2)
@@ -103,8 +143,9 @@ def student_task(current_result_dir: str):
         print("\n--- ⚠️ 未处理任何问题 ---")
 
 if __name__ == "__main__":
-    # read_answer = get_key_from_file()
-    answer = ["Python program"]
+    answer = get_key_from_file()
+    # test
+    # answer = ["Python program"]
     
     for now_answer in answer:
         sanitized_answer_name = now_answer.replace(" ", "_").lower()
@@ -124,7 +165,6 @@ if __name__ == "__main__":
                 query, wiki_summary = get_pair_of_keyworks_wiki_summary(answer_raw, loop_id=i + 1, save_dir=current_result_dir)
                 summary_response = loop_over_prompts(query, wiki_summary, i + 1)
                 
-                # save_string_as_json(summary_response, f"{current_result_dir}/summary_response_{i + 1}.json")
                 # 解析字符串并收集数据
                 try:
                     # 解析模型返回的JSON字符串
@@ -159,7 +199,7 @@ if __name__ == "__main__":
             # time.sleep(1)
 
         sumary_all_response = []
-        # 3.1. 读取所有 summary_response_{i}.json 文件，并将其内容合并到 sumary_all_response 列表中
+        # 读取所有 summary_response_{i}.json 文件，并将其内容合并到 sumary_all_response 列表中
         for i in range(NUM_LOOPS):
             summary_file_path = os.path.join(current_result_dir, f"summary_response_{i + 1}.json")
             if os.path.exists(summary_file_path):
@@ -177,8 +217,3 @@ if __name__ == "__main__":
 
         print("\n--- 启动 Student Agent 进行最终解答 ---")
         student_task(current_result_dir)
-        # student_agent = init_agent("student_prompt")
-        # student_user_prompt = query_prompt("student_prompt", prompt1 = relation_response)
-        # student_response = student_agent.run(student_user_prompt)
-        # print(f"Student Agent 返回: {student_response}")
-        # save_string_as_json(student_response, f"{current_result_dir}/student_response.json")

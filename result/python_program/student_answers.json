@@ -1,14 +1,14 @@
 [
   {
-    "question_text": "What is written using Python programming language and whose syntax defines how it is written and interpreted by both runtime system and human readers? Also, what kind of language is Python which this thing is based on, and in which decade was Python conceived? And who started its implementation and where?",
-    "answer": "Python programming language (Python was conceived in the late 1980s by Guido van Rossum in the Netherlands. Python is a high - level, interpreted programming language. And programs written in Python follow Python's syntax which is understood by both the runtime system and human readers)"
+    "question_text": "What is written according to a certain programming language's syntax, which was conceived in the late 1980s and its implementation started in December 1989 by an individual at an organization in a European country? Also, it can be interpreted by both a runtime system and human readers.",
+    "answer": "Python"
   },
   {
-    "question_text": "What is based on a high - level, general - purpose programming language, can be interpreted by a runtime system according to its syntax, and was conceived in a time period close to 1990? Also, who started the implementation of the language it is based on, and what was the language's predecessor, and what operating system can it interface with?",
-    "answer": "Java (The language based on a high - level general - purpose language, interpretable by a runtime system, conceived around 1990. James Gosling started the implementation of Java, its predecessor was Oak, and it can interface with various operating systems)"
+    "question_text": "What kind of program, written in a language that is a successor to ABC and can interface with a certain operating system, is interpreted by a runtime system and can also be understood by human readers?",
+    "answer": "Python"
   },
   {
-    "question_text": "What is written according to the syntax of a language that was conceived in the late 1980s, can be interpreted by human readers, and is related to a runtime system in a computer? Also, who started implementing the language it is based on, and in which country was the implementation started, and what was the language's successor to?",
-    "answer": "Java (James Gosling started implementing it, in Canada, and it was a successor to Oak)"
+    "question_text": "In the context of computer programming, what is the program that is related to a runtime system in a computer, written in a language started by a person in the late 1980s, and can be read by human readers?",
+    "answer": "Java"
   }
 ]

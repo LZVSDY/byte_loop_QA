@@ -1,1 +1,8 @@
 **/__pycache__/
+
+*.zip
+
+/new
+/result
+/log
+/test

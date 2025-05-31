@@ -11,8 +11,8 @@ class ArkAgent:
                  model_id: str, 
                  system_prompt: Optional[str] = "你是人工智能助手",
                  base_url: str = "https://ark.cn-beijing.volces.com/api/v3",
-                 api_key_env_var: str = "75a7a2b3-c147-4005-8c14-45a65fe2da90"):
-                #  api_key_env_var: str = "f6272a3b-ed62-4988-9bf2-3312b415a2d8"):
+                #  api_key_env_var: str = "75a7a2b3-c147-4005-8c14-45a65fe2da90"): # 1.5 pro
+                 api_key_env_var: str = "6d6f26d9-4bad-4280-8972-347815f959b2"): # deepseek r1
         """
         初始化 Agent。
 
@@ -67,29 +67,31 @@ class ArkAgent:
                     messages=messages,
                     stream=True,
                 )
-                print("----- 流式响应 -----")
+                # print("----- 流式响应 -----")
                 for chunk in response_stream:
                     if chunk.choices and chunk.choices[0].delta and chunk.choices[0].delta.content:
                         content_piece = chunk.choices[0].delta.content
-                        print(content_piece, end="", flush=True)
+                        # print(content_piece, end="", flush=True)
                         full_response_content.append(content_piece)
-                print() # 换行
+                # print() # 换行
                 return "".join(full_response_content) # 返回拼接后的完整流式响应
             else:
-                print("----- 标准请求 -----")
+                # print("----- 标准请求 -----")
                 completion = self.client.chat.completions.create(
                     model=self.model_id,
                     messages=messages,
                 )
                 response_content = completion.choices[0].message.content
-                print(f"模型响应: {response_content}")
+                # print(f"模型响应: {response_content}")
                 return response_content
         except Exception as e:
             print(f"与方舟 API 交互时发生错误: {e}")
             return f"错误: API 调用失败 - {e}"
 
 if __name__ == "__main__":
-    MODEL_ENDPOINT_ID = "doubao-1-5-pro-256k-250115" 
+    # MODEL_ENDPOINT_ID = "doubao-1-5-pro-256k-250115" 
+    MODEL_ENDPOINT_ID = "deepseek-r1-250120" 
+    
 
     try:
         # 1. 创建一个 Agent 实例
