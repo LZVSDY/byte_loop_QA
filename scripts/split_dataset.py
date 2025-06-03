@@ -2,7 +2,7 @@ import pandas as pd
 
 csv_file_path = '/data1/lz/loop_QA/dataset/dr_rl.csv'
 output_filename = '/data1/lz/loop_QA/dataset/random_entries.txt'
-NUM_RESULTS = 20
+NUM_RESULTS = 6868
 
 try:
     # 第一列是 'Category'，第二列是 'Entry'

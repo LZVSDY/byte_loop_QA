@@ -1,5 +1,101 @@
+<requirements>
 Please act in your role as a Deep Research Question Generation Expert. Use the following "Final Answer" and "Knowledge Base" to generate a diverse list of test questions according to your instructions.
+</requirements>
 
+**输入**
+---
+**[Final Answer]**
+This is the single correct answer for all questions you will generate.
+Iron Gwazi
+
+---
+**[Knowledge Base]**
+This is a JSON list containing all the simple and complex conditions you must use to construct your questions.
+[
+    {{
+        "keywords": "Dance the Night Away",
+        "relation_to_answer": "Similar name relation: “Dance the Night Away” is related to “Dance the Night”",
+        "iteration": "1",
+        "type": "work"
+    }},
+    {{
+        "keywords": "Van Halen",
+        "relation_to_answer": "“Dance the Night Away” is a song by Van Halen related to “Dance the Night”",
+        "iteration": "1",
+        "type": "organization"
+    }},
+    {{
+        "keywords": "Disraeli Gears",
+        "relation_to_answer": "Disraeli Gears is not directly related to “Dance the Night” but is in the same piece of text",
+        "iteration": "1",
+        "type": "work"
+    }},
+    {{
+        "keywords": "Cream",
+        "relation_to_answer": "Cream is not directly related to “Dance the Night” but is in the same piece of text",
+        "iteration": "1",
+        "type": "organization"
+    }}
+]
+
+**输出**
+[
+    {{
+        "answer": "Dance the Night",
+        "question_text": "A song which has a similar name to “Dance the Night Away” by Van Halen, is produced by Raul Malo with Don Cook, and is from the soundtrack of a 2023 fantasy comedy film. What's the song?",
+        "condition_strategy": {{
+            "simple_used": [
+                "Dance the Night Away",
+                "Van Halen"
+            ],
+            "complex_used": [
+                "the Mavericks",
+                "Raul Malo",
+                "Don Cook",
+                "Barbie",
+                "2023"
+            ],
+            "complex_processed": [
+                "Replace 'the Mavericks' with 'a music band', keep 'Raul Malo', 'Don Cook' as they are, 'Barbie' was described as 'the subject of a 2023 fantasy comedy film', '2023' kept directly"
+            ]
+        }},
+        "generated_question": {{
+            "validation": {{
+                "unique_solution": true,
+                "ambiguity_check": "The combination of conditions like similar name relation, production details and the film reference makes the answer unique",
+                "answer_path": "The conditions guide to the relation with 'Dance the Night Away', the producer details and film info that uniquely lead to 'Dance the Night'."
+            }}
+        }}
+    }},
+    {{
+        "answer": "Dance the Night",
+        "question_text": "What song shares a name similarity with a Van Halen song, is by a country music band, written by their lead vocalist, and is in the soundtrack of a well - known 2023 movie?",
+        "condition_strategy": {{
+            "simple_used": [
+                "Van Halen",
+                "Dance the Night Away"
+            ],
+            "complex_used": [
+                "the Mavericks",
+                "Raul Malo",
+                "Barbie",
+                "2023"
+            ],
+            "complex_processed": [
+                "Replace 'the Mavericks' with 'a country music band', 'Raul Malo' kept as lead vocalist of the band, 'Barbie' described as 'a well - known movie in 2023', '2023' kept directly"
+            ]
+        }},
+        "generated_question": {{
+            "validation": {{
+                "unique_solution": true,
+                "ambiguity_check": "The combination of name similarity, band type, author and movie - year details narrows down to one song",
+                "answer_path": "Connecting the name similarity with Van Halen song, band type, author and movie year details leads to 'Dance the Night'."
+            }}
+        }}
+    }}
+]
+
+**输入**
 ---
 **[Final Answer]**
 This is the single correct answer for all questions you will generate.
@@ -9,3 +105,5 @@ This is the single correct answer for all questions you will generate.
 **[Knowledge Base]**
 This is a JSON list containing all the simple and complex conditions you must use to construct your questions.
 {prompt2}
+
+**输出**

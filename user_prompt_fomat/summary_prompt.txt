@@ -1,10 +1,46 @@
+<requirements>
 请严格根据你的角色（专业的维基百科分析师）和任务指示，处理以下提供的多部分信息。
 
 **[任务目标]:**
 你需要根据【答案类型】确定分类维度，然后分析【百科内容】，提取专有名词并按要求生成包含关系、循环次数和分类的 JSON 对象。
 
----
-**[输入信息]:**
+**[输出要求]:**
+请确保你的输出是纯英文的、合法的 JSON 对象列表，不包含任何额外的解释或标记。
+</requirements>
+
+**[输入]:**
+循环次数：1
+
+答案：Iron Gwazi
+
+维基百科内容：['Roller coasters are widely known for their drops, inversions, airtime, and other intense ride elements that contribute to the ride.',
+'Rocky Mountain Construction (RMC) is a roller coaster manufacturing and construction company based in Hayden, Idaho, United States.',
+'This is a list of attractions in Busch Gardens Tampa Bay.'
+]
+
+**[输出]:**
+[
+    {{
+        "keywords": "Rocky Mountain Construction (RMC)",
+        "relation_to_answer": "Iron Gwazi was manufactured by Rocky Mountain Construction (RMC).",
+        "iteration": 1,
+        "type": "organization"
+    }},
+    {{
+        "keywords": "Busch Gardens Tampa Bay",
+        "relation_to_answer": "Iron Gwazi is located in Busch Gardens Tampa Bay.",
+        "iteration": 1,
+        "type": "space"
+    }},
+    {{
+        "keywords": "Hayden, Idaho",
+        "relation_to_answer": "Iron Gwazi was manufactured by a company based in Hayden, Idaho, United States.",
+        "iteration": 1,
+        "type": "space"
+    }}
+]
+
+**[输入]:**
 
 循环次数：{prompt2}
 
@@ -12,6 +48,4 @@
 
 维基百科内容：{prompt1}
 
----
-**[输出要求]:**
-请确保你的输出是纯英文的、合法的 JSON 对象列表，不包含任何额外的解释或标记。
+**[输出]:**
