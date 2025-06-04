@@ -36,9 +36,9 @@ def select_random_rows_from_csv(input_csv_path: str, output_csv_path: str, num_r
         print(f"❌ 处理CSV文件时发生错误: {e}")
 
 if __name__ == "__main__":
-    input_file = "/data1/lz/loop_QA/dataset/qa_report_test.csv"   
-    output_file = "/data1/lz/loop_QA/dataset/random_20_rows_test.csv" 
-    number_of_rows_to_select = 15
+    input_file = "/data1/lz/loop_QA/test_final/qa_report_sample.csv"   
+    output_file = "/data1/lz/loop_QA/test_final/random_50_rows_sample.csv" 
+    number_of_rows_to_select = 50
     my_seed = 4
 
     select_random_rows_from_csv(input_file, output_file, num_rows=number_of_rows_to_select, random_seed=my_seed)

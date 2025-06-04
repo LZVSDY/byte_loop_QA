@@ -4,9 +4,9 @@ import csv
 import glob
 
 BASE_RESULT_DIR = "/data1/lz/loop_QA/test1"  # 专业词目录的根路径
-SOURCE_TXT_FILE = "/data1/lz/loop_QA/dataset/random_entries.txt"     # 包含原始专业词列表的txt文件路径
-FAILURE_LOG_FILE = "/data1/lz/loop_QA/test_final/failure_test2.txt"             # 记录失败专业词的文件
-OUTPUT_CSV_FILE = "/data1/lz/loop_QA/test_final/qa_report_test2.csv"            # 输出的CSV文件名
+SOURCE_TXT_FILE = "/data1/lz/loop_QA/dataset/random_entries_sample.txt"     # 包含原始专业词列表的txt文件路径
+FAILURE_LOG_FILE = "/data1/lz/loop_QA/test_final/failure_sample.txt"             # 记录失败专业词的文件
+OUTPUT_CSV_FILE = "/data1/lz/loop_QA/test_final/qa_report_sample.csv"            # 输出的CSV文件名
 
 def sanitize_to_dirname(term_name: str) -> str:
     """将原始专业词转换为目录名格式 (小写，空格替换为下划线)。"""
@@ -57,31 +57,84 @@ def process_directories():
         original_term_name = dirname_to_original(term_dirname)
 
         # 检查是否存在 wikipedia*.txt 文件
+        """
+        student_loop.json 格式示例：
+        [
+            {
+                "question_text": "Which season of an English football club involved competition in a Southern league before the integration of that league into a higher division, occurred when the club was renamed from its original 19th-century name, and took place in the early 20th century?",
+                "answer1": "\n\n1919–20",
+                "check_result1": "\n\nno",
+                "answer2": "\n\n1919-20",
+                "check_result2": "\nno",
+                "answer3": "\n\n1919-20",
+                "check_result3": "\n\nno",
+                "answer4": "\n\n1919–20",
+                "check_result4": "\n\nno",
+                "answer5": "\n\n1900-01",
+                "check_result5": "\n\nno"
+            }
+        ]
+        """
         wiki_files_pattern = os.path.join(current_term_path, "wikipedia*.txt")
         if not glob.glob(wiki_files_pattern): # glob.glob返回一个列表，如果为空则表示没找到
             failed_terms.append(original_term_name)
             print(f"📉 专业词 '{original_term_name}' (目录: {term_dirname}) 失败，缺少 wikipedia*.txt 文件。")
-            # 对于失败的条目，我们不再尝试读取 student_answers.json
+            # 对于失败的条目，我们不再尝试读取 student_loop.json
 
-        # 如果存在 wikipedia*.txt 文件，则处理 student_answers.json
+        # 如果存在 wikipedia*.txt 文件，则处理 student_loop.json
+        
+        
         else:
-            student_answers_path = os.path.join(current_term_path, "student_answers.json")
+            student_answers_path = os.path.join(current_term_path, "student_loop.json")
             if os.path.exists(student_answers_path):
                 try:
                     with open(student_answers_path, 'r', encoding='utf-8') as f_answers:
                         qa_pairs = json.load(f_answers)
                         if isinstance(qa_pairs, list): # 确保是列表
                             for pair in qa_pairs:
-                                question = pair.get("question_text")
-                                model_answer = pair.get("answer")
-                                if question and model_answer: # 确保键存在且值不为空
+                                qustion = pair.get("question_text")
+                                answer1 = pair.get("answer1")
+                                answer2 = pair.get("answer2")
+                                answer3 = pair.get("answer3")
+                                answer4 = pair.get("answer4")
+                                answer5 = pair.get("answer5")
+                                
+                                check_result1 = pair.get("check_result1")
+                                check_result2 = pair.get("check_result2")
+                                check_result3 = pair.get("check_result3")
+                                check_result4 = pair.get("check_result4")
+                                check_result5 = pair.get("check_result5")
+                                
+                                if qustion and answer1 and answer2 and answer3 and answer4 \
+                                    and answer5 and check_result1 and check_result2 and check_result3 \
+                                    and check_result4 and check_result5: # 确保键存在且值不为空
                                     csv_data_rows.append({
                                         "Answer": original_term_name,
-                                        "Question": question,
-                                        "Model_Answer": model_answer
+                                        "Question": qustion,
+                                        "Model_Answer1": answer1,
+                                        "Model_Answer2": answer2,
+                                        "Model_Answer3": answer3,
+                                        "Model_Answer4": answer4,
+                                        "Model_Answer5": answer5,
+                                        "Check_Result1": check_result1,
+                                        "Check_Result2": check_result2,
+                                        "Check_Result3": check_result3,
+                                        "Check_Result4": check_result4,
+                                        "Check_Result5": check_result5
                                     })
                                 else:
                                     print(f"⚠️ 警告: 在 {student_answers_path} 中找到不完整的QA对: {pair}")
+                                
+                                # question = pair.get("question_text")
+                                # model_answer = pair.get("answer")
+                                # if question and model_answer: # 确保键存在且值不为空
+                                #     csv_data_rows.append({
+                                #         "Answer": original_term_name,
+                                #         "Question": question,
+                                #         "Model_Answer": model_answer
+                                #     })
+                                # else:
+                                #     print(f"⚠️ 警告: 在 {student_answers_path} 中找到不完整的QA对: {pair}")
                         else:
                             print(f"⚠️ 警告: {student_answers_path} 的内容不是预期的列表格式。")
                 except json.JSONDecodeError:
@@ -103,7 +156,8 @@ def process_directories():
 
     # 4. 将提取的数据写入CSV文件
     if csv_data_rows:
-        csv_fieldnames = ["Answer", "Question", "Model_Answer"]
+        csv_fieldnames = ["Answer", "Question", "Model_Answer1", "Model_Answer2", "Model_Answer3", "Model_Answer4", "Model_Answer5",
+                          "Check_Result1", "Check_Result2", "Check_Result3", "Check_Result4", "Check_Result5"]
         with open(OUTPUT_CSV_FILE, 'w', newline='', encoding='utf-8') as f_csv:
             writer = csv.DictWriter(f_csv, fieldnames=csv_fieldnames)
             writer.writeheader()

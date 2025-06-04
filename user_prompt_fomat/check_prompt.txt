@@ -1,0 +1,22 @@
+<requirements>
+Is the "Candidate Answer" semantically consistent with the "Reference Answer", considering the "Question"? (Answer with only "yes" or "no")
+</requirements>
+
+**输入**
+Reference Answer:
+Userkaf
+
+Candidate Answer:
+Djedefre
+
+**输出**
+no
+
+**输入**
+Reference Answer:
+{prompt1}
+
+Candidate Answer:
+{prompt2}
+
+**输出**

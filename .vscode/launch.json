@@ -1,0 +1,57 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "loop_student_check",
+            "type": "python",
+            "request": "launch",
+            "program": "/data1/lz/loop_QA/loop_student.py",
+            "python": "/data1/miniconda3/envs/test/bin/python", 
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            // "cwd": "/data1/lz/vit-pytorch",
+            "env": {
+                "PYTHONPATH": "/data1/lz/loop_QA"
+            }
+        },
+        {
+            "name": "byteBot",
+            "type": "python",
+            "request": "launch",
+            "program": "/data1/lz/loop_QA/run.py",
+            "python": "/data1/miniconda3/envs/test/bin/python", 
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            // "cwd": "/data1/lz/vit-pytorch",
+            "env": {
+                "PYTHONPATH": "/data1/lz/loop_QA"
+            }
+        },
+        {
+            "name": "agent",
+            "type": "python",
+            "request": "launch",
+            "program": "/data1/lz/loop_QA/untils/agent.py",
+            "python": "/data1/miniconda3/envs/test/bin/python", 
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "/data1/lz/vit-pytorch",
+            "env": {
+                "PYTHONPATH": "/data1/lz/vit-pytorch"
+            }
+        },
+        {
+            "name": "wiki",
+            "type": "python",
+            "request": "launch",
+            "program": "/data1/lz/loop_QA/untils/wiki.py",
+            "python": "/data1/miniconda3/envs/test/bin/python", 
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            // "cwd": "/data1/lz/vit-pytorch",
+            "env": {
+                "PYTHONPATH": "/data1/lz/loop_QA/untils"
+            }
+        }
+    ]
+}

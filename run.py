@@ -154,7 +154,7 @@ def student_task(current_result_dir: str):
 def main():
     add_subscription("https://get.cr450.cc/ss/112183/UqhKNMnAZI/")
     add_subscription("https://rdqvi.no-mad-world.club/link/4Ekojbqua9J8mx5a?sub=2&extend=1")
-    answer = get_key_from_file()
+    answer = get_key_from_file(file_path="/data1/lz/loop_QA/dataset/random_entries.txt")
     with ThreadPoolExecutor(max_workers=NUM_PARALLEL) as pool:
         list(pool.map(process_single, answer))
     
