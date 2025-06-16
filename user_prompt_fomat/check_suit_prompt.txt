@@ -1,16 +1,28 @@
-你是一个严谨的内容匹配分析师。你的任务是判断下面提供的 [维基百科摘要] 是否与给定的 [关键词] 紧密相关且内容有效。
+<requirements>
+Is the "Candidate Answer" semantically consistent with the "Reference Answer", considering the "Question"? (Answer with only "1" or "0")
+</requirements>
 
-所谓“有效”指的是，摘要内容不是错误页面、消歧义页或空洞无物的描述。
+**输入**
+Question:
+What early 25th century BCE ruler initiated a royal tradition of building solar cult structures that later influenced temple designs in Heliopolis?
 
-如果内容相关且有效，请只回答 'yes'。
-如果内容不相关或无效，请只回答 'no'。
+Reference Answer:
+Userkaf
 
-不要添加任何其他解释或文字。
+Candidate Answer:
+Djedefre
 
----
+**输出**
+0
 
-[关键词]:
+**输入**
+Question:
+{prompt3}
+
+Reference Answer:
 {prompt1}
 
-[维基百科摘要]:
+Candidate Answer:
 {prompt2}
+
+**输出**

@@ -1,9 +1,124 @@
+# import csv
+# import os
+# import json
+# import time
+# import shutil
+# import re
+# from concurrent.futures import ThreadPoolExecutor
+# from utils.agent import ArkAgent
+# from utils.wiki import search_wikipedia
+# from utils.utils import get_system_prompt, query_prompt, \
+#     save_string_as_json, save_list_as_json, \
+#     get_key_from_file, get_keywords_from_summary
+
+# from wikipedia import add_subscription
+
+# NUM_PARALLEL = 64
+# DEEPSEEK_ENDPOINT_ID = "deepseek-r1-250120" 
+# DOUBAO_ENDPOINT_ID = "doubao-1-5-pro-256k-250115"
+# DOUBAO_THINKING_ENDPOINT_ID = "doubao-1-5-thinking-pro-250415"
+# RESULT_DIR = "/data1/lz/loop_QA/test1"
+# NUM_STUDENT_LOOPS = 5
+
+# def init_agent(choose_prompt: str = "system_prompt", is_student: int = 0) -> ArkAgent:
+#     """
+#     Initialize the agent with the system prompt.
+#     """
+#     system_prompt = get_system_prompt(choose_prompt)
+#     if is_student:
+#         return ArkAgent(model_id=DOUBAO_THINKING_ENDPOINT_ID, system_prompt=system_prompt,
+#             api_key_env_var = "75a7a2b3-c147-4005-8c14-45a65fe2da90")
+#     else:
+#         return ArkAgent(model_id=DEEPSEEK_ENDPOINT_ID, system_prompt=system_prompt,
+#             api_key_env_var = "6d6f26d9-4bad-4280-8972-347815f959b2")
+
+# def my_processing_logic(row):
+#         """
+#         示例处理函数：检查 'answer' 和 'model_answer' 是否相同。
+#         你可以根据你的实际需求修改这个函数。
+#         """
+        
+#         if row.get('answer') and row.get('model_answer') and row['\ufeffquestion']:
+#             check_agent = init_agent("check_suit_prompt")
+#             check_user_prompt = query_prompt("check_suit_prompt", prompt1=row.get('answer'), prompt2=row.get('model_answer'), prompt3=row['\ufeffquestion'])
+#             check_response = check_agent.run(check_user_prompt)
+#             return check_response
+
+# def process_and_write_csv(input_file_path, output_file_path, new_column_name):
+#     """
+#     读取CSV文件，对每行数据进行处理，并添加一个新列到新的CSV文件。
+
+#     Args:
+#         input_file_path (str): 输入CSV文件的路径。
+#         output_file_path (str): 输出CSV文件的路径（将创建新文件）。
+#         new_column_name (str): 新增列的列名。
+#         processing_function (callable): 一个函数，接受一行数据（字典形式），
+#                                         返回该行的新列的值。
+#     """
+#     try:
+#         with open(input_file_path, mode='r', encoding='utf-8') as infile, \
+#              open(output_file_path, mode='w', encoding='utf-8', newline='') as outfile:
+
+#             reader = csv.DictReader(infile)
+            
+#             # 获取所有现有列名
+#             fieldnames = reader.fieldnames
+#             if fieldnames is None:
+#                 print(f"Error: Input CSV file '{input_file_path}' is empty or has no headers.")
+#                 return
+
+#             # 添加新列名到列表末尾
+#             new_fieldnames = fieldnames + [new_column_name]
+            
+#             writer = csv.DictWriter(outfile, fieldnames=new_fieldnames)
+#             writer.writeheader()  # 写入新文件的标题行
+
+#             for row in reader:
+#                 # 调用处理函数获取新列的值
+#                 new_value = my_processing_logic(row)
+                
+#                 # 将新值添加到当前行数据中
+#                 row[new_column_name] = new_value
+                
+#                 # 将更新后的行写入新文件
+#                 writer.writerow(row)
+        
+#         print(f"处理完成！新结果已写入到 '{output_file_path}'。")
+
+#     except FileNotFoundError:
+#         print(f"错误：文件 '{input_file_path}' 未找到。")
+#     except Exception as e:
+#         print(f"发生了一个意外错误：{e}")
+
+# if __name__ == "__main__":
+
+#     input_csv_path = "/data1/lz/loop_QA/dataset/rl_output.csv"
+
+#     output_csv_path = "/data1/lz/loop_QA/dataset/rl_output_lzCheck.csv"
+#     new_column_name = "is_answer_correct" # 你想新增的列名
+
+#     # 2. 定义你的处理函数
+#     # 这个函数会根据 'answer' 和 'model_answer' 是否匹配来返回 'True' 或 'False'
+    
+
+#     # 3. 调用主函数进行处理
+#     process_and_write_csv(input_csv_path, output_csv_path, new_column_name)
+
+#     # 4. 可选：验证新生成的文件内容
+#     print("\n新生成的文件内容（前几行）：")
+#     with open(output_csv_path, 'r', encoding='utf-8') as f:
+#         for i, line in enumerate(f):
+#             print(line.strip())
+#             if i >= 4: # 只打印前5行
+#                 break
+
+import csv
 import os
 import json
 import time
 import shutil
 import re
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed # 导入 as_completed
 from utils.agent import ArkAgent
 from utils.wiki import search_wikipedia
 from utils.utils import get_system_prompt, query_prompt, \
@@ -12,37 +127,12 @@ from utils.utils import get_system_prompt, query_prompt, \
 
 from wikipedia import add_subscription
 
-NUM_LOOPS = 2
-NUM_RESULTS = 3
 NUM_PARALLEL = 64
-DEEPSEEK_ENDPOINT_ID = "deepseek-r1-250120" 
+DEEPSEEK_ENDPOINT_ID = "deepseek-r1-250120"
 DOUBAO_ENDPOINT_ID = "doubao-1-5-pro-256k-250115"
 DOUBAO_THINKING_ENDPOINT_ID = "doubao-1-5-thinking-pro-250415"
-LANGUAGE = "en"
 RESULT_DIR = "/data1/lz/loop_QA/test1"
-
-"""
-    # 1. 创建一个 Agent 实例
-    my_agent = ArkAgent(model_id=MODEL_ENDPOINT_ID, system_prompt="你是一个乐于助人的代码助手。")
-
-    # 2. 测试标准（非流式）请求
-    print("\n--- 测试标准请求 ---")
-    prompt1 = "你好，请用 Python 写一个快速排序算法。"
-    response1 = my_agent.run(prompt1)
-    print(f"Agent 返回 (标准): {response1}") # run 方法内部已经打印
-"""
-
-def loop_over_prompts(read_answer: str, read_wiki_summary: str, loop_id : int) -> str:
-    sumary_agent = init_agent("summary_prompt")
-    sumary_user_prompt = query_prompt("summary_prompt", prompt1 = read_wiki_summary, prompt2=loop_id, prompt3=read_answer)
-    sumary_response = sumary_agent.run(sumary_user_prompt)
-    
-    ### 如果sumary_response 是一个字符串，且开头为 ```json, 就手动去掉
-    if isinstance(sumary_response, str) and sumary_response.startswith("```json"):
-        sumary_response = sumary_response[8:].strip()  # 去掉开头的 ```json 和换行符
-        sumary_response = sumary_response.rstrip("```")  # 去掉结尾的 ```
-        
-    return sumary_response
+NUM_STUDENT_LOOPS = 5
 
 def init_agent(choose_prompt: str = "system_prompt", is_student: int = 0) -> ArkAgent:
     """
@@ -56,117 +146,120 @@ def init_agent(choose_prompt: str = "system_prompt", is_student: int = 0) -> Ark
         return ArkAgent(model_id=DEEPSEEK_ENDPOINT_ID, system_prompt=system_prompt,
             api_key_env_var = "6d6f26d9-4bad-4280-8972-347815f959b2")
 
-def refindoll_str(json_string: str) -> list[str]:
-    regex_pattern = r'"question_text"\s*:\s*"(.*?)"'
-
-    # 使用 re.findall 寻找所有匹配项
-    # 它会返回一个列表，其中只包含捕获组(括号里的部分)的内容
-    extracted_questions = re.findall(regex_pattern, json_string, flags=re.DOTALL)
-
-    all_questions = []
-    
-    # 打印结果
-    print("--- 使用正则表达式提取的结果 ---\n")
-    if extracted_questions:
-        for i, question in enumerate(extracted_questions):
-            # print(f"question_text: {question}\n")
-            all_questions.append({"question_text": question})
-    else:
-        print("没有找到匹配 'question_text' 的内容。")
-    
-    return all_questions
-
-def main():
-    answer = get_key_from_file()
-    with ThreadPoolExecutor(max_workers=NUM_PARALLEL) as pool:
-        list(pool.map(process_single, answer))
-      
-def process_single(now_answer: str):
-    sanitized_answer_name = now_answer.replace(" ", "_").lower()
-    current_result_dir = os.path.join(RESULT_DIR, sanitized_answer_name)
-    # 读取 current_result_dir 下的 student_answers.json 文件
-    # 格式如下
+# my_processing_logic 将保持不变，因为它处理单行数据
+def my_processing_logic(row):
     """
-    [
-    {
-        "question_text": "Which animated TV special from a popular children's series features characters celebrating a Jewish holiday involving an eight-day candle lighting tradition, while indirectly referencing an ancient rebellion against foreign cultural influence?",
-        "answer": "\n\nA Charlie Brown Chanukah"
-    },
-    {
-        "question_text": "What holiday-themed episode of a 90s cartoon depicts the miracle of oil lasting eight nights, while making subtle connections to a historical victory documented in ancient Hebrew texts?",
-        "answer": "\n\nThe Simpsons' \"Chanukah Story\""
-    },
-    {
-        "question_text": "In what Nickelodeon production do animated babies interact with a nine-branched candelabrum while their story parallels events from a 2nd century BCE conflict in the Eastern Mediterranean?",
-        "answer": "\n\nRugrats"
-    }
-    ]
+    示例处理函数：检查 'answer' 和 'model_answer' 是否相同。
+    你可以根据你的实际需求修改这个函数。
     """
-    # 用 agent 检查文件中的问题和答案是否正确
-    # now_answer 是真实答案，question_text 是问题，answer是模型做出来的答案，需要检查now_answer的语义和answer的语义是否一致
-    # 一个 json 中，有多个问题和答案对
-    source_file_path = f"{current_result_dir}/student_loop.json"
-    output_file_path = f"{current_result_dir}/student_answers_checked.json"
-    
-    # 如果 source_file_path 不存在，直接返回
-    if not os.path.exists(source_file_path):
-        print(f"--- ⚠️ {now_answer} 的检查源文件不存在: {source_file_path} ---")
-        return
-    
-    # 如果output_file_path存在，就return
-    if os.path.exists(output_file_path):
-        print(f"--- ✅ 已存在检查结果文件: {output_file_path}，跳过检查 ---")
-        return
-    
-    check_agent = init_agent("check_prompt", is_student=1)
-    
-    # 循环读取 question_text 和 answer
-    with open(source_file_path, "r") as f:
-        student_answers = json.load(f)
-    # 循环处理每一个问题和答案，用 check_agent 检查
-    all_answers = []
-    for i, item in enumerate(student_answers):
-        if "question_text" in item and "answer1" in item:
-            question = item["question_text"]
-            answer_list = []
-            answer1 = item["answer1"]
-            answer2 = item["answer2"]
-            answer3 = item["answer3"]
-            answer_list.append(answer1)
-            answer_list.append(answer2)
-            answer_list.append(answer3)
-            # print(f"\n--- [问题 {i+1}/{len(student_answers)}] ---")
-            # print(f"正在检查: {question}")
-            # print(f"模型答案: {answer}")
-            
-            check_response_list = []
-            
-            # 为当前问题创建prompt并运行agent
-            for attempt, answer in enumerate(answer_list):
-                check_user_prompt = query_prompt("check_prompt", prompt1=now_answer, prompt2=answer)
-                check_response = check_agent.run(check_user_prompt)
-                check_response_list.append(check_response)
+
+    if row.get('answer') and row.get('model_answer') and row.get('\ufeffquestion'): # 使用 .get() 避免 KeyError
+        check_agent = init_agent("check_suit_prompt")
+        check_user_prompt = query_prompt("check_suit_prompt", prompt1=row.get('answer'), prompt2=row.get('model_answer'), prompt3=row.get('\ufeffquestion'))
+        check_response = check_agent.run(check_user_prompt)
+        return check_response
+    return "N/A" # 如果关键列缺失，返回默认值
+
+def process_and_write_csv_concurrently(input_file_path, output_file_path, new_column_name):
+    """
+    读取CSV文件，使用线程池对每行数据进行高并发处理，并添加一个新列到新的CSV文件。
+
+    Args:
+        input_file_path (str): 输入CSV文件的路径。
+        output_file_path (str): 输出CSV文件的路径（将创建新文件）。
+        new_column_name (str): 新增列的列名。
+    """
+    try:
+        # 1. 读取所有输入数据
+        rows_to_process = []
+        with open(input_file_path, mode='r', encoding='utf-8') as infile:
+            reader = csv.DictReader(infile)
+            fieldnames = reader.fieldnames
+            if fieldnames is None:
+                print(f"Error: Input CSV file '{input_file_path}' is empty or has no headers.")
+                return
+
+            # 检查必要列是否存在
+            # 你的 my_processing_logic 中使用了 'answer', 'model_answer', '\ufeffquestion'
+            required_cols_for_processing = ['answer', 'model_answer', '\ufeffquestion']
+            if not all(col in fieldnames for col in required_cols_for_processing):
+                print(f"Warning: Missing one or more required columns ({required_cols_for_processing}) in input CSV.")
+                # 可以选择在这里返回或继续，但处理函数会返回 "N/A"
                 
-            # print(f"Agent 返回的检查结果: {check_response}")
-            
-            # 将问题和答案配对，存入结果列表
-            all_answers.append({
-                "question_text": question,
-                "answer1": answer_list[0],
-                "answer2": answer_list[1],
-                "answer3": answer_list[2],
-                "check_result1": check_response_list[0],
-                "check_result2": check_response_list[1],
-                "check_result3": check_response_list[2]
-            })
-    # 将所有结果一次性写入新的JSON文件
-    if all_answers:
-        with open(output_file_path, 'w', encoding='utf-8') as f:
-            # 使用 json.dump 来美化输出 (indent=2)
-            json.dump(all_answers, f, ensure_ascii=False, indent=2)
-        print(f"\n--- ✅ {now_answer} 全部检查完毕 ---")
-    else:
-        print(f"\n--- ⚠️ {now_answer} 未处理任何问题 ---")
+            for row in reader:
+                rows_to_process.append(row)
+
+        if not rows_to_process:
+            print("No data rows found in the input CSV file.")
+            return
+
+        # 2. 使用 ThreadPoolExecutor 并行处理数据
+        processed_results = []
+        with ThreadPoolExecutor(max_workers=NUM_PARALLEL) as executor:
+            # 提交任务到线程池
+            # future_to_row_map 存储 future 对象到原始行数据的映射
+            future_to_row_map = {executor.submit(my_processing_logic, row): row for row in rows_to_process}
+
+            # 收集结果
+            for future in as_completed(future_to_row_map):
+                original_row = future_to_row_map[future]
+                try:
+                    new_value = future.result() # 获取处理函数的返回值
+                    original_row[new_column_name] = new_value
+                    processed_results.append(original_row)
+                except Exception as exc:
+                    print(f'Row processing generated an exception: {exc} for row: {original_row}')
+                    # 如果处理失败，可以考虑给该行添加一个错误标记或默认值
+                    original_row[new_column_name] = f"Error: {exc}"
+                    processed_results.append(original_row)
+
+        # 3. 将处理后的数据写入新的CSV文件
+        # 重新获取 fieldnames，以防原始文件为空
+        # 或者从 processed_results 的第一行获取 keys
+        if not processed_results:
+            print("No results to write to output file.")
+            return
+
+        # 确保新列名在 fieldnames 中，且在最后
+        output_fieldnames = list(processed_results[0].keys()) # 获取所有可能的键
+        if new_column_name not in output_fieldnames:
+            output_fieldnames.append(new_column_name) # 确保新列在
+        
+        # 保持原始列的顺序，并将新列放在最后
+        final_fieldnames = [f for f in fieldnames if f in output_fieldnames] # 原始列顺序
+        if new_column_name not in final_fieldnames:
+            final_fieldnames.append(new_column_name) # 确保新列在末尾
+
+        with open(output_file_path, mode='w', encoding='utf-8', newline='') as outfile:
+            writer = csv.DictWriter(outfile, fieldnames=final_fieldnames)
+            writer.writeheader()
+            writer.writerows(processed_results) # 批量写入所有处理后的行
+
+        print(f"处理完成！新结果已写入到 '{output_file_path}'。")
+
+    except FileNotFoundError:
+        print(f"错误：文件 '{input_file_path}' 未找到。")
+    except Exception as e:
+        print(f"发生了一个意外错误：{e}")
 
 if __name__ == "__main__":
-    main()
+    input_csv_path = "/data1/lz/loop_QA/dataset/rl_output.csv"
+    output_csv_path = "/data1/lz/loop_QA/dataset/rl_output_lzCheck.csv"
+    new_column_name = "is_answer_correct" # 你想新增的列名
+
+    # 3. 调用主函数进行处理
+    start_time = time.time()
+    process_and_write_csv_concurrently(input_csv_path, output_csv_path, new_column_name)
+    end_time = time.time()
+    print(f"总耗时: {end_time - start_time:.2f} 秒")
+
+    # 4. 可选：验证新生成的文件内容
+    print("\n新生成的文件内容（前几行）：")
+    try:
+        with open(output_csv_path, 'r', encoding='utf-8') as f:
+            for i, line in enumerate(f):
+                print(line.strip())
+                if i >= 4: # 只打印前5行
+                    break
+    except FileNotFoundError:
+        print("输出文件未生成，无法验证。")

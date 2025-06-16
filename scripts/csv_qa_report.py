@@ -3,10 +3,10 @@ import json
 import csv
 import glob
 
-BASE_RESULT_DIR = "/data1/lz/loop_QA/test1"  # 专业词目录的根路径
-SOURCE_TXT_FILE = "/data1/lz/loop_QA/dataset/random_entries.txt"     # 包含原始专业词列表的txt文件路径
-FAILURE_LOG_FILE = "/data1/lz/loop_QA/test_final/failure_test2.txt"             # 记录失败专业词的文件
-OUTPUT_CSV_FILE = "/data1/lz/loop_QA/test_final/qa_report_test2.csv"            # 输出的CSV文件名
+BASE_RESULT_DIR = "/data1/lz/loop_QA/testzh_tmp"  # 专业词目录的根路径
+SOURCE_TXT_FILE = "/data1/lz/loop_QA/dataset/random_entries_backup.txt"     # 包含原始专业词列表的txt文件路径
+FAILURE_LOG_FILE = "/data1/lz/loop_QA/test_final/failure_zh_tmp.txt"             # 记录失败专业词的文件
+OUTPUT_CSV_FILE = "/data1/lz/loop_QA/test_final/qa_report_zh_tmp.csv"            # 输出的CSV文件名
 
 def sanitize_to_dirname(term_name: str) -> str:
     """将原始专业词转换为目录名格式 (小写，空格替换为下划线)。"""

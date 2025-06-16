@@ -18,8 +18,8 @@ NUM_PARALLEL = 32
 DEEPSEEK_ENDPOINT_ID = "deepseek-r1-250120" 
 DOUBAO_ENDPOINT_ID = "doubao-1-5-pro-256k-250115"
 DOUBAO_THINKING_ENDPOINT_ID = "doubao-1-5-thinking-pro-250415"
-LANGUAGE = "en"
-RESULT_DIR = "/data1/lz/loop_QA/test1"
+LANGUAGE = "zh"
+RESULT_DIR = "/data1/lz/loop_QA/testzh_tmp"
 
 """
     # 1. 创建一个 Agent 实例
@@ -152,9 +152,8 @@ def student_task(current_result_dir: str):
         print("\n--- ⚠️ 未处理任何问题 ---")
         
 def main():
-    add_subscription("https://get.cr450.cc/ss/112183/UqhKNMnAZI/")
-    add_subscription("https://rdqvi.no-mad-world.club/link/4Ekojbqua9J8mx5a?sub=2&extend=1")
-    answer = get_key_from_file(file_path="/data1/lz/loop_QA/dataset/random_entries.txt")
+    add_subscription()
+    answer = get_key_from_file(file_path="/data1/lz/loop_QA/dataset/random_entries_backup.txt")
     with ThreadPoolExecutor(max_workers=NUM_PARALLEL) as pool:
         list(pool.map(process_single, answer))
     
@@ -244,7 +243,7 @@ def process_single(now_answer: str):
     student_task(current_result_dir)
     
     ### 此处认为 now_answer 任务执行完毕，需要往执行完毕记录txt 中写入一行
-    with open("/data1/lz/loop_QA/finished_tasks.txt", "a") as f:
+    with open("/data1/lz/loop_QA/finished_tasks_zh.txt", "a") as f:
         f.write(f"{now_answer}\n")
         
         
