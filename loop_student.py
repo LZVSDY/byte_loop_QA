@@ -37,10 +37,10 @@ def init_agent(choose_prompt: str = "system_prompt", is_student: int = 0) -> Ark
     system_prompt = get_system_prompt(choose_prompt)
     if is_student:
         return ArkAgent(model_id=DOUBAO_THINKING_ENDPOINT_ID, system_prompt=system_prompt,
-            api_key_env_var = "75a7a2b3-c147-4005-8c14-45a65fe2da90")
+            api_key_env_var = "")
     else:
         return ArkAgent(model_id=DEEPSEEK_ENDPOINT_ID, system_prompt=system_prompt,
-            api_key_env_var = "6d6f26d9-4bad-4280-8972-347815f959b2")
+            api_key_env_var = "")
 
 def refindoll_str(json_string: str) -> list[str]:
     regex_pattern = r'"question_text"\s*:\s*"(.*?)"'

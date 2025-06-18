@@ -10,7 +10,7 @@ conda activate wiki_loop
 ```bash
 git clone https://github.com/LZVSDY/Wikipedia
 cd Wikipedia
-pip install .
+pip install -e .
 cd ..
 ```
 

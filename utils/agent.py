@@ -11,8 +11,8 @@ class ArkAgent:
                  model_id: str, 
                  system_prompt: Optional[str] = "你是人工智能助手",
                  base_url: str = "https://ark.cn-beijing.volces.com/api/v3",
-                #  api_key_env_var: str = "75a7a2b3-c147-4005-8c14-45a65fe2da90"): # 1.5 pro
-                 api_key_env_var: str = "6d6f26d9-4bad-4280-8972-347815f959b2"): # deepseek r1
+                #  api_key_env_var: str = ""): # 1.5 pro
+                 api_key_env_var: str = ""): # deepseek r1
         """
         初始化 Agent。
 
